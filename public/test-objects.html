@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Objects with Photos</title>
+    <style>
+        .objects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .property-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .property-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .property-content {
+            padding: 15px;
+        }
+        .property-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c5aa0;
+        }
+        .property-address {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .property-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d63384;
+            margin-bottom: 8px;
+        }
+        .property-details {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin: 20px;">Test Objects with Photos from Realt.by</h1>
+    <div class="objects-grid" id="objectsGrid">
+        <div>Loading...</div>
+    </div>
+
+    <script>
+        async function loadObjects() {
+            try {
+                console.log('Loading objects...');
+                const response = await fetch('/api/properties');
+                const objects = await response.json();
+                
+                console.log('Loaded objects:', objects.length);
+                
+                const grid = document.getElementById('objectsGrid');
+                grid.innerHTML = '';
+                
+                // Show first 12 objects
+                objects.slice(0, 12).forEach(obj => {
+                    const card = document.createElement('div');
+                    card.className = 'property-card';
+                    
+                    const hasPhotos = obj.photos && obj.photos.length > 0;
+                    const mainPhoto = hasPhotos ? obj.photos[0] : '';
+                    
+                    card.innerHTML = `
+                        <div class="property-image">
+                            ${hasPhotos ? 
+                                `<img src="${mainPhoto}" alt="${obj.title}" onerror="this.style.display='none'">` : 
+                                '<div style="background: #f0f0f0; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">No Photo</div>'
+                            }
+                            ${hasPhotos ? `<div class="photo-badge">${obj.photos.length} фото</div>` : ''}
+                        </div>
+                        <div class="property-content">
+                            <div class="property-title">${obj.title}</div>
+                            <div class="property-address">📍 ${obj.address}</div>
+                            <div class="property-price">${obj.priceUSD}</div>
+                            <div class="property-details">
+                                ${obj.rooms ? `🏠 ${obj.rooms} комн. • ` : ''}
+                                ${obj.area ? `📐 ${obj.area}` : ''}
+                            </div>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(card);
+                });
+                
+            } catch (error) {
+                console.error('Error loading objects:', error);
+                document.getElementById('objectsGrid').innerHTML = 'Error loading objects';
+            }
+        }
+
+        // Load objects when page loads
+        document.addEventListener('DOMContentLoaded', loadObjects);
+    </script>
+</body>
+</html>

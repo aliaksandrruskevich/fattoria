@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fattoria.by - Агентство недвижимости</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Fattoria.by - профессиональное агентство недвижимости в Минске. Продажа и аренда квартир, домов, коммерческой недвижимости. Лучшие предложения на рынке недвижимости Беларуси.">
+  <meta name="keywords" content="недвижимость Минск, купить квартиру Минск, аренда жилья Минск, агентство недвижимости, продажа домов, коммерческая недвижимость">
+  <meta name="author" content="Fattoria.by">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Russian">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Fattoria.by - Агентство недвижимости в Минске">
+  <meta property="og:description" content="Профессиональное агентство недвижимости в Минске. Продажа и аренда квартир, домов, коммерческой недвижимости.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://fattoria.by">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fattoria.by">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fattoria.by - Агентство недвижимости в Минске">
+  <meta name="twitter:description" content="Профессиональное агентство недвижимости в Минске. Продажа и аренда квартир, домов, коммерческой недвижимости.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://fattoria.by">
+
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Yandex Maps API -->
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_REAL_API_KEY&lang=ru_RU" type="text/javascript"></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  <!-- Объединенные стили для index -->
+  <link rel="stylesheet" href="css/index-combined.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C279E20DBY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-C279E20DBY');
+  </script>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- Блок с большим выбором объектов -->
+<section class="big-choice">
+  <div class="container big-choice-content">
+    <h2 data-aos="fade-down">Большой выбор объектов недвижимости</h2>
+    <p class="lead" data-aos="fade-up" data-aos-delay="200">Мы предлагаем лучшие варианты квартир, домов и коммерческой недвижимости в вашем городе</p>
+
+    <div class="row mt-5">
+      <div class="col-md-3 col-sm-6" data-aos="slide-in-left" data-aos-delay="0" data-aos-duration="800">
+        <div class="category-square">
+          <img src="фото/foto19.jpg" alt="Новостройки" loading="lazy">
+          <div class="category-content">
+            <h4>Новостройки</h4>
+            <p>Современные жилые комплексы с отделкой</p>
+            <a href="новостройки.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1000">
+        <div class="category-square">
+          <img src="фото/фото12.jpg" alt="Наши объекты" loading="lazy">
+          <div class="category-content">
+            <h4>Наши объекты</h4>
+            <p>Лучшие предложения от нашего агентства</p>
+            <a href="properties.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="slide-in-right" data-aos-delay="400" data-aos-duration="800">
+        <div class="category-square">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" alt="Коммерческая недвижимость" loading="lazy">
+          <div class="category-content">
+            <h4>Коммерческая</h4>
+            <p>Помещения для бизнеса и инвестиций</p>
+            <a href="камерческая недвижимость.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="600" data-aos-duration="1200">
+        <div class="category-square">
+          <img src="фото/foto20.jpg" alt="Загородная недвижимость" loading="lazy">
+          <div class="category-content">
+            <h4>Загородная</h4>
+            <p>Дома, коттеджи и участки за городом</p>
+            <a href="загородная недвижимость.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="properties.html" class="btn btn-warning btn-lg mt-4" data-aos="fade-up" data-aos-delay="800">Смотреть каталог</a>
+  </div>
+</section>
+
+<!-- Фильтры поиска -->
+<section class="section" id="filters">
+  <div class="container">
+    <h3 class="text-center mb-4" data-aos="fade-up">Найти объект недвижимости</h3>
+    <form class="row g-3 justify-content-center" id="filterForm">
+      <div class="col-md-3">
+        <select class="form-select" id="typeFilter">
+          <option value="">Все типы</option>
+          <option value="квартира">Квартира</option>
+          <option value="дом">Дом</option>
+          <option value="коммерческая">Коммерческая</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="districtFilter" placeholder="Район">
+      </div>
+      <div class="col-md-2">
+        <input type="number" class="form-control" id="minPrice" placeholder="Мин. цена">
+      </div>
+      <div class="col-md-2">
+        <input type="number" class="form-control" id="maxPrice" placeholder="Макс. цена">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-warning w-100" id="applyFilters">Применить</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Спецпредложения -->
+<section class="section" id="specials">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Специальные предложения</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0" data-type="квартира" data-district="центр" data-price="120000">
+        <div class="special-card">
+          <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" class="special-img w-100" alt="Спецпредложение 1" loading="lazy">
+            <span class="special-badge">Топ</span>
+          </div>
+          <div class="p-3">
+            <h5>Квартира в центре</h5>
+            <p>Просторная 3-комнатная квартира с ремонтом в историческом центре</p>
+            <p class="text-warning fw-bold">120 000 €</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200" data-type="дом" data-district="экологический" data-price="250000">
+        <div class="special-card">
+          <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=784&q=80" class="special-img w-100" alt="Спецпредложение 2" loading="lazy">
+            <span class="special-badge">Хит</span>
+          </div>
+          <div class="p-3">
+            <h5>Загородный дом</h5>
+            <p>Уютный дом с участком в экологически чистом районе</p>
+            <p class="text-warning fw-bold">250 000 €</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400" data-type="квартира" data-district="новый комплекс" data-price="95000">
+        <div class="special-card">
+          <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" class="special-img w-100" alt="Спецпредложение 3" loading="lazy">
+            <span class="special-badge">Новинка</span>
+          </div>
+          <div class="p-3">
+            <h5>Новая квартира</h5>
+            <p>Современная квартира в новом жилом комплексе с отделкой</p>
+            <p class="text-warning fw-bold">95 000 €</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="properties.html" class="btn btn-outline-dark">Все спецпредложения</a>
+    </div>
+  </div>
+</section>
+
+<!-- Наши объекты -->
+<section class="section" id="our-properties">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Наши объекты</h2>
+    <!-- Properties will be loaded here -->
+  </div>
+</section>
+
+<!-- Услуги агентства -->
+<section class="section black-section" id="services-agency">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Услуги агентства</h2>
+    <div class="row g-4">
+      <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h5>Продажа недвижимости</h5>
+          <p>Поможем продать вашу недвижимость по максимальной цене</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="slide-in-left" data-aos-delay="100" data-aos-duration="800">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-key"></i>
+          </div>
+          <h5>Покупка недвижимости</h5>
+          <p>Подберем оптимальные варианты согласно вашим критериям</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="flip-up" data-aos-delay="200" data-aos-duration="1000">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h5>Новостройки</h5>
+          <p>Квартиры в новых жилых комплексах от проверенных застройщиков</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="slide-in-right" data-aos-delay="300" data-aos-duration="800">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h5>Юридическое сопровождение</h5>
+          <p>Полное юридическое сопровождение сделок с недвижимостью</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="zoom-in-up" data-aos-delay="400" data-aos-duration="900">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h5>Ипотечное кредитование</h5>
+          <p>Помощь в получении ипотечного кредита на лучших условиях</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="fade-in" data-aos-delay="500" data-aos-duration="700">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h5>Инвестиции в недвижимость</h5>
+          <p>Консультации по выгодному инвестированию в недвижимость</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="slide-in-up" data-aos-delay="600" data-aos-duration="1000">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h5>Обмен недвижимости</h5>
+          <p>Помощь в обмене вашей недвижимости на более подходящий вариант</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" data-aos="bounce-in" data-aos-delay="700" data-aos-duration="1200">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-search-dollar"></i>
+          </div>
+          <h5>Оценка недвижимости</h5>
+          <p>Профессиональная оценка рыночной стоимости объектов недвижимости</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Интерактивная карта объектов -->
+<section class="section" id="map-section">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Расположение наших объектов</h2>
+    <div id="map" style="width: 100%; height: 400px;" data-aos="fade-up"></div>
+  </div>
+</section>
+
+<!-- О компании -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6" data-aos="fade-right">
+        <h2>Агентство недвижимости "АН Фаттория"</h2>
+        <p>Мы работаем на рынке недвижимости более 10 лет, помогая нашим клиентам находить идеальное жилье и выгодно продавать свою недвижимость.</p>
+        <p>Наша команда профессиональных риелторов и юристов обеспечивает полное сопровождение сделок, гарантируя безопасность и прозрачность всех процессов.</p>
+        <p>Мы ценим доверие наших клиентов и стремимся предоставлять услуги высочайшего качества, учитывая индивидуальные потребности каждого.</p>
+        <ul>
+          <li>Более 1000 успешных сделок</li>
+          <li>Профессиональные риелторы с большим опытом работы</li>
+          <li>Полное юридическое сопровождение</li>
+          <li>Партнерские отношения с ведущими застройщиками</li>
+        </ul>
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+<img src="фото/фото3.jpg" class="img-fluid rounded" alt="Офис агентства недвижимости" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Тест-драйв -->
+<section class="section" id="services" style="background: #f8f9fa;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center" data-aos="zoom-in">
+        <div class="circle">10<br><small>дней</small></div>
+      </div>
+      <div class="col-md-8" data-aos="fade-left">
+        <h2>Тест-драйв услуг агентства</h2>
+        <p>Попробуйте наши услуги по продаже квартиры в течение 10 дней без риска.</p>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#testDriveModal">Попробовать</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Объединенный блок с единым фоном -->
+<section class="unified-bg-section">
+  <div class="container">
+    <!-- Услуги для продавцов/покупателей -->
+    <div class="row mb-5">
+      <div class="col-12 text-center mb-5">
+        <h2 data-aos="fade-up">Наши услуги</h2>
+      </div>
+      <div class="col-md-6 mb-4" data-aos="fade-up">
+        <div class="service-card dark-card">
+          <h3>Услуги для продавцов</h3>
+          <p>Мы поможем выгодно продать вашу недвижимость.</p>
+          <a href="services-sellers.html" target="_blank" class="btn btn-light">Подробнее</a>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-card dark-card">
+          <h3>Услуги для покупателей</h3>
+          <p>Подберем лучшие варианты квартир под ваши запросы.</p>
+          <a href="services-buyers.html" target="_blank" class="btn btn-light">Подробнее</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Почему нам доверяют -->
+    <div class="row mb-5">
+      <div class="col-12 text-center mb-5">
+        <h2 data-aos="fade-up">Почему нам доверяют</h2>
+      </div>
+      <div class="col-md-4" data-aos="flip-left">
+        <div class="card p-4 rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="experience">
+          <h5>Опыт</h5>
+          <p>Более 10 лет на рынке недвижимости.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+        <div class="card p-4 rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="reliability">
+          <h5>Надежность</h5>
+          <p>Прозрачные условия сделки.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="400">
+        <div class="card p-4 rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="results">
+          <h5>Результат</h5>
+          <p>Лучшие предложения для клиентов.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Нам доверяют -->
+    <div class="row mb-5">
+      <div class="col-12 text-center mb-4">
+        <h2 data-aos="fade-up">Нам доверяют</h2>
+      </div>
+      <div class="col-12">
+        <div class="logos d-flex flex-wrap justify-content-center">
+          <img src="https://bir.by/banner/site.jpg" alt="Лого 1" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="logo1" loading="lazy">
+          <img src="фото/лф1.jpg" alt="Лф1" data-aos="zoom-in" data-aos-delay="200" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="logo2" loading="lazy">
+          <img src="фото/а100.png" alt="А100" data-aos="zoom-in" data-aos-delay="400" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="logo3" loading="lazy">
+          <img src="фото/данолого.jpg" alt="Данолого" data-aos="zoom-in" data-aos-delay="600" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="logo4" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- Официальные партнёры -->
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        <h2 data-aos="fade-up">Официальные партнёры</h2>
+      </div>
+      <div class="col-12">
+        <div class="logos d-flex flex-wrap justify-content-center">
+          <img src="https://dummyimage.com/100x40/ccc/000.png&text=Partner+1" alt="Партнёр 1" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="partner1" loading="lazy">
+          <img src="https://dummyimage.com/100x40/ccc/000.png&text=Partner+2" alt="Партнёр 2" data-aos="zoom-in" data-aos-delay="200" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="partner2" loading="lazy">
+          <img src="https://dummyimage.com/100x40/ccc/000.png&text=Partner+3" alt="Партнёр 3" data-aos="zoom-in" data-aos-delay="400" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="partner3" loading="lazy">
+          <img src="https://dummyimage.com/100x40/ccc/000.png&text=Partner+4" alt="Партнёр 4" data-aos="zoom-in" data-aos-delay="600" data-bs-toggle="modal" data-bs-target="#trustModal" data-trust-type="partner4" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<!-- Common JavaScript -->
+<script src="js/common.js" defer></script>
+<!-- Компонентный загрузчик -->
+<script src="js/load-components.js" defer></script>
+<!-- Объединенные скрипты для index -->
+<script src="js/index-combined.js" defer></script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+<!-- Slider JS -->
+<script src="js/slider.js" defer></script>
+<!-- Filters JS -->
+<script src="js/filters.js" defer></script>
+<!-- Toast notifications -->
+<script src="js/toast.js" defer></script>
+<!-- Forms handling -->
+<script src="js/forms.js" defer></script>
+
+<!-- Yandex Map Initialization -->
+<style>
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.property-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.property-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.property-address {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+</style>
+<script>
+  ymaps.ready(init);
+  function init(){
+    var myMap = new ymaps.Map("map", {
+      center: [53.9045, 27.5615], // Минск
+      zoom: 10
+    });
+
+    // Примеры маркеров объектов
+    var placemark1 = new ymaps.Placemark([53.9045, 27.5615], {
+      hintContent: 'Квартира в центре',
+      balloonContent: '3-комнатная квартира, 120 000 €'
+    });
+    var placemark2 = new ymaps.Placemark([53.9145, 27.5715], {
+      hintContent: 'Загородный дом',
+      balloonContent: 'Уютный дом с участком, 250 000 €'
+    });
+
+    myMap.geoObjects.add(placemark1);
+    myMap.geoObjects.add(placemark2);
+  }
+
+// Функция для загрузки объектов с Realt.by
+async function loadRealtByProperties() {
+    try {
+        const response = await fetch('api-proxy.php');
+        const properties = await response.json();
+
+        // Отображаем объекты в нужном разделе
+        displayProperties(properties);
+
+    } catch (error) {
+        console.error('Ошибка загрузки объектов:', error);
+        showTestData();
+    }
+}
+
+// Функция для отображения объектов
+function displayProperties(properties) {
+    // Найди блок где показывать объекты (например, раздел "Наши объекты")
+    const container = document.getElementById('our-properties') ||
+                     document.querySelector('.properties-section');
+
+    if (!container || !properties || properties.length === 0) return;
+
+    let html = '<h2>Актуальные объекты</h2><div class="properties-grid">';
+
+    properties.slice(0, 6).forEach(property => {
+        html += `
+
+            <div class="property-card">
+                <h3>${property.title || 'Объект недвижимости'}</h3>
+                <div class="property-price">${property.price || 'Цена по запросу'}</div>
+                <p>${property.description || ''}</p>
+                ${property.address ? `<div class="property-address">${property.address}</div>` : ''}
+            </div>
+        `;
+    });
+
+    html += '</div>';
+    container.innerHTML += html;
+  }
+//  ВАЖНО: ДОБАВЬ ЭТУ СТРОКУ
+// Запускаем загрузку объектов при загрузке страницы
+document.addEventListener('DOMContentLoaded', loadRealtByProperties);
+
+// Функция для тестовых данных (добавь на случай ошибки API)
+function showTestData() {
+    const testData = [
+        {
+            title: "Квартира в центре Минска",
+            price: "125 000 €",
+            description: "Уютная квартира с современным ремонтом"
+        },
+        {
+            title: "Дом в пригороде",
+            price: "275 000 €",
+            description: "Просторный дом с большим участком"
+        }
+    ];
+
+    const container = document.getElementById('our-properties') ||
+                     document.querySelector('.properties-section');
+
+    if (container) {
+        let html = '<h2>Наши объекты</h2><div class="properties-grid">';
+
+        testData.forEach(property => {
+            html += `
+                <div class="property-card">
+                    <h3>${property.title}</h3>
+                    <div class="property-price">${property.price}</div>
+                    <p>${property.description}</p>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        container.innerHTML = html;
+    }
+}
+</script>
+</body>
+</html>
+
+

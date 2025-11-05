@@ -1,0 +1,30 @@
+/* Стили для форм */
+.transparent-input {
+    background-color: transparent !important;
+    border: 2px solid #e0e0e0 !important;
+    color: #e0e0e0 !important;
+}
+
+.transparent-input::placeholder {
+    color: rgba(224, 224, 224, 0.7) !important;
+}
+
+.form-box {
+    background: rgba(26, 26, 26, 0.9);
+    color: #e0e0e0;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+    color: #f0ad4e;
+}
+
+/* Стили для индикатора загрузки */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}

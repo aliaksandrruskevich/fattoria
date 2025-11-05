@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Наши объекты | Fattoria.by</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- Объединенные стили для index -->
+  <link rel="stylesheet" href="../css/index-combined.css">
+  <link rel="stylesheet" href="../css/nashi-obekty.css">
+  <!-- Yandex Maps API -->
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_YANDEX_MAPS_API_KEY&lang=ru_RU" type="text/javascript"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C279E20DBY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-C279E20DBY');
+  </script>
+
+  <!-- УДАЛЕН ПРОБЛЕМНЫЙ СКРИПТ WEB VITALS -->
+</head>
+<body>
+
+<!-- Контейнер для уведомлений -->
+<div class="toast-container"></div>
+
+
+
+<!-- Модальное окно для деталей объекта -->
+<div class="modal fade" id="propertyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="propertyModalTitle">Детали объекта</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="propertyModalContent">
+          <!-- Контент будет заполняться динамически -->
+        </div>
+        <hr>
+        <h6>Заинтересованы в этом объекте?</h6>
+        <form id="propertyInterestForm">
+          <div class="mb-3">
+            <input type="text" class="form-control" name="name" placeholder="Ваше имя" required>
+          </div>
+          <div class="mb-3">
+            <input type="tel" class="form-control" name="phone" placeholder="Ваш телефон" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Email (необязательно)">
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="propertyAgree" required>
+            <label class="form-check-label" for="propertyAgree">
+              Даю согласие на обработку персональных данных
+            </label>
+          </div>
+          <button type="submit" class="btn btn-warning w-100">Запросить подробную информацию</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="header-placeholder"></div>
+
+
+
+<!-- Герой секция -->
+<section class="objects-hero">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-4" data-aos="fade-down">Наши объекты</h1>
+    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200">Лучшие предложения недвижимости в Минске и области</p>
+  </div>
+</section>
+
+<!-- Фильтры -->
+<section class="container">
+  <div class="filter-section" data-aos="fade-up">
+    <h4 class="mb-4">Подбор параметров</h4>
+    <div class="row">
+      <div class="col-md-3 filter-group">
+        <label class="form-label">Тип недвижимости</label>
+        <select class="form-select">
+          <option selected>Все типы</option>
+          <option>Квартира</option>
+          <option>Дом</option>
+          <option>Коммерческая</option>
+          <option>Участок</option>
+        </select>
+      </div>
+      <div class="col-md-3 filter-group">
+        <label class="form-label">Район</label>
+        <select class="form-select">
+          <option selected>Все районы</option>
+          <option>Центральный</option>
+          <option>Советский</option>
+          <option>Первомайский</option>
+          <option>Партизанский</option>
+          <option>Заводской</option>
+          <option>Ленинский</option>
+          <option>Октябрьский</option>
+          <option>Московский</option>
+          <option>Фрунзенский</option>
+        </select>
+      </div>
+      <div class="col-md-3 filter-group">
+        <label class="form-label">Количество комнат</label>
+        <select class="form-select">
+          <option selected>Любое</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5+</option>
+        </select>
+      </div>
+      <div class="col-md-3 filter-group">
+        <label class="form-label">Цена, $</label>
+        <input type="range" class="form-range" min="0" max="500000" step="10000" id="priceRange">
+        <div class="price-range">
+          <span id="minPrice">0</span>
+          <span id="maxPrice">500 000</span>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-3 filter-group">
+        <label class="form-label">Площадь, м²</label>
+        <div class="row">
+          <div class="col">
+            <input type="number" class="form-control" placeholder="от">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control" placeholder="до">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 filter-group">
+        <label class="form-label">Дополнительные параметры</label>
+        <div class="d-flex flex-wrap">
+          <div class="form-check me-3">
+            <input class="form-check-input" type="checkbox" id="balconyCheck">
+            <label class="form-check-label" for="balconyCheck">Балкон/лоджия</label>
+          </div>
+          <div class="form-check me-3">
+            <input class="form-check-input" type="checkbox" id="parkingCheck">
+            <label class="form-check-label" for="parkingCheck">Парковка</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="renovationCheck">
+            <label class="form-check-label" for="renovationCheck">Ремонт</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 filter-group d-flex align-items-end">
+        <button class="btn btn-primary-custom w-100" id="applyFiltersBtn">Показать объекты</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Секция объектов -->
+<section class="container py-5" id="propertiesListSection">
+  <!-- Loading indicator -->
+  <div id="loadingIndicator" class="text-center py-4" style="display: none;">
+    <div class="spinner-border text-warning" role="status">
+      <span class="visually-hidden">Загрузка...</span>
+    </div>
+    <p class="mt-2">Загружаем объекты...</p>
+  </div>
+
+  <!-- Error message -->
+  <div id="errorMessage" class="alert alert-danger" style="display: none;">
+    <h5>Ошибка загрузки</h5>
+    <p>Не удалось загрузить объекты. Попробуйте обновить страницу или изменить фильтры.</p>
+  </div>
+
+  <!-- Properties slider container -->
+  <div class="properties-slider-container">
+    <div class="properties-container" id="propertiesContainer">
+      <!-- Объекты будут загружены динамически из API realt.by -->
+    </div>
+
+    <!-- Slider navigation -->
+    <div class="slider-navigation">
+      <button class="slider-btn slider-prev" id="prevBtn" disabled>
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="slider-indicators">
+        <span id="currentPage">1</span> / <span id="totalPages">1</span>
+      </div>
+      <button class="slider-btn slider-next" id="nextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Property Detail View -->
+<section class="container py-5" id="propertyDetailSection" style="display: none;">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Property Gallery -->
+      <div class="property-gallery mb-4" id="propertyGallery">
+        <div class="main-image-container">
+          <img id="mainPropertyImage" src="/images/placeholder-loading.svg" alt="Главное фото" class="img-fluid rounded">
+        </div>
+        <div class="thumbnail-gallery" id="thumbnailGallery">
+          <!-- Thumbnails will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Property Info -->
+      <div class="property-details-card" id="propertyDetails">
+        <h1 id="propertyTitle">Загрузка...</h1>
+        <p class="location" id="propertyLocation">
+          <i class="fas fa-map-marker-alt"></i> Загрузка...
+        </p>
+        <div class="price" id="propertyPrice">Загрузка...</div>
+
+        <div class="features-grid" id="propertyFeatures">
+          <!-- Features will be loaded here -->
+        </div>
+
+        <div class="description-section">
+          <h3>Описание</h3>
+          <div id="propertyDescription">Загрузка...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <!-- Contact Form -->
+      <div class="contact-card">
+        <h4>Заинтересованы в объекте?</h4>
+        <form id="contactForm">
+          <div class="mb-3">
+            <input type="text" class="form-control" name="name" placeholder="Ваше имя" required>
+          </div>
+          <div class="mb-3">
+            <input type="tel" class="form-control" name="phone" placeholder="Ваш телефон" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Email (необязательно)">
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" name="message" rows="3" placeholder="Ваше сообщение"></textarea>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="agreeCheck" required>
+            <label class="form-check-label" for="agreeCheck">
+              Даю согласие на обработку персональных данных
+            </label>
+          </div>
+          <button type="submit" class="btn btn-warning w-100">Отправить запрос</button>
+        </form>
+      </div>
+
+      <!-- Agent Info -->
+      <div class="agent-card" id="agentInfo">
+        <h5>Контактное лицо</h5>
+        <div class="agent-details">
+          <div class="agent-avatar">
+            <i class="fas fa-user-circle fa-3x"></i>
+          </div>
+          <div>
+            <div class="agent-name" id="agentName">Загрузка...</div>
+            <div class="agent-phone" id="agentPhone">Загрузка...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-card">
+        <h5>Расположение объекта</h5>
+        <div id="propertyMap" style="height: 250px; width: 100%; border-radius: 8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to list button -->
+  <div class="text-center mt-4">
+    <button id="backToListBtn" class="btn btn-outline-primary">
+      <i class="fas fa-arrow-left"></i> Вернуться к списку объектов
+    </button>
+  </div>
+</section>
+
+<!-- Интерактивная карта объектов -->
+<section class="section" id="properties-map-section">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Расположение наших объектов</h2>
+    <div id="propertiesMap" style="width: 100%; height: 500px;" data-aos="fade-up"></div>
+  </div>
+</section>
+
+<!-- Преимущества -->
+<section class="bg-light py-5">
+  <div class="container">
+    <h2 class="text-center section-title mb-5">Почему выбирают наши объекты</h2>
+    <div class="row">
+      <div class="col-md-4 text-center mb-4" data-aos="fade-up">
+        <div class="advantage-icon mb-3">
+          <i class="fas fa-check-circle fa-3x"></i>
+        </div>
+        <h4>Проверенные объекты</h4>
+        <p>Все объекты проверены на юридическую чистоту и соответствие описанию</p>
+      </div>
+      <div class="col-md-4 text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="advantage-icon mb-3">
+          <i class="fas fa-camera fa-3x"></i>
+        </div>
+        <h4>Реальные фото</h4>
+        <p>Мы публикуем только реальные фотографии объектов, без stock-изображений</p>
+      </div>
+      <div class="col-md-4 text-center mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="advantage-icon mb-3">
+          <i class="fas fa-euro-sign fa-3x"></i>
+        </div>
+        <h4>Лучшие цены</h4>
+        <p>Мы Negotiate лучшие цены для наших клиентов на рынке недвижимости</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div id="footer-placeholder"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<!-- Загрузчик header -->
+<script src="../js/header-loader.js"></script>
+<!-- Load Components JS -->
+<script src="../js/load-components.js"></script>
+<!-- Common JavaScript -->
+<script src="../js/common.js"></script>
+<!-- Forms JavaScript -->
+<!-- <script src="js/forms.js"></script> -->
+<!-- Toast JavaScript -->
+<script src="../js/toast.js"></script>
+<!-- Main Combined JavaScript -->
+<script src="../js/main-combined.js"></script>
+<script src="../js/nashi-obekty.js?v=3"></script>
+
+<style>
+/* Стили для карточек объектов */
+.property-card {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.property-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.property-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-img {
+    transform: scale(1.05);
+}
+
+.photo-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.property-price-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #ffc107;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.property-type-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.property-content {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.property-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    line-height: 1.3;
+}
+
+.property-location {
+    margin-bottom: 0.75rem;
+}
+
+.property-address {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.property-district {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.property-params {
+    flex: 1;
+    margin-bottom: 0.75rem;
+}
+
+.param-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.param-name {
+    color: #6c757d;
+}
+
+.param-value {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.property-prices {
+    margin-bottom: 0.75rem;
+}
+
+.price-usd {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #28a745;
+}
+
+.price-per-m2 {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.contact-info {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.contact-info .phone {
+    font-size: 0.85rem;
+    color: #28a745;
+    font-weight: 500;
+}
+
+.property-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.view-details-btn {
+    flex: 1;
+}
+
+.favorite-btn {
+    width: 40px;
+}
+
+/* Существующие стили */
+.property-gallery {
+  margin-bottom: 2rem;
+}
+
+.main-image-container {
+  margin-bottom: 1rem;
+}
+
+.main-image-container img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumbnail-gallery {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.thumbnail-gallery img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.thumbnail-gallery img.active,
+.thumbnail-gallery img:hover {
+  opacity: 1;
+}
+
+.property-details-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.property-details-card h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.location {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-bottom: 1.5rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.description-section {
+  margin-top: 2rem;
+}
+
+.description-section h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.contact-card,
+.agent-card,
+.map-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.agent-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.agent-avatar {
+  color: #ffc107;
+}
+
+.agent-name {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.agent-phone a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.agent-phone a:hover {
+  text-decoration: underline;
+}
+
+.map-card #propertyMap {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .property-gallery {
+    margin-bottom: 1rem;
+  }
+
+  .main-image-container img {
+    height: 250px;
+  }
+
+  .property-details-card {
+    padding: 1rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .property-actions {
+    flex-direction: column;
+  }
+  
+  .favorite-btn {
+    width: 100%;
+  }
+}
+</style>
+
+<!-- Плавающая кнопка чата Telegram -->
+<div class="telegram-chat-widget">
+  <a href="https://t.me/fattoriaminsk" target="_blank" class="telegram-chat-btn" title="Написать в Telegram">
+    <i class="fab fa-telegram-plane"></i>
+    <span class="chat-text">Чат</span>
+  </a>
+</div>
+</body>
+</html>
+
+
+<script src="/js/nashi-obekty-photos-fix.js"></script>

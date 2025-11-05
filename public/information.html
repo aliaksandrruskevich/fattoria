@@ -1,0 +1,478 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fattoria.by - Информация</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Combined CSS -->
+  <link rel="stylesheet" href="css/combined-all.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C279E20DBY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-C279E20DBY');
+  </script>
+</head>
+<body>
+
+<!-- Контейнер для уведомлений -->
+<div class="toast-container"></div>
+
+
+
+<div id="header-placeholder"></div>
+
+<!-- Тарифы -->
+<section class="section black-section" id="tariffs">
+  <div class="container">
+
+
+    <!-- Текстовый блок -->
+    <div class="tariff-section" data-aos="fade-up" style="background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(42, 42, 42, 0.9) 100%); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem;">
+      <div class="tariff-section-before" style="content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(247, 7, 255, 0.1), transparent); transition: left 0.5s;"></div>
+      <h2 class="text-center mb-4">Информация</h2>
+      <p>
+        Агентство недвижимости "Фаттория" — ваш надежный партнер в мире загородной жизни. Мы предоставляем полный спектр услуг по продаже, покупке и аренде недвижимости, сопровождая клиентов на каждом этапе сделки с гарантией юридической безопасности и максимальной выгоды.
+      </p>
+      <p>
+        Наши специалисты обладают глубокими знаниями рынка и индивидуальным подходом к каждому клиенту. Мы ценим доверие и стремимся к долгосрочному сотрудничеству, предлагая прозрачные условия и профессиональное сопровождение.
+      </p>
+      <h3 class="mt-5 mb-3"></h3>
+      <p>
+        За названием «Фаттория» стоит сплочённая команда экспертов, которых объединяет не только профессионализм, но и искренняя любовь к загородной жизни. Мы — команда мечтателей и реалистов, готовых воплотить ваши мечты о идеальном доме в реальность.
+      </p>
+      <ul class="list-unstyled">
+        <li><strong>Аналитики рынка:</strong> Знают все тенденции и настоящую стоимость объектов. Помогут вам не переплатить и найти лучшую сделку.</li>
+        <li><strong>Юристы с узкой специализацией:</strong> Гарантируют юридическую чистоту на 100%. Защитят ваши интересы на всех этапах сделки.</li>
+        <li><strong>Менеджеры по работе с клиентами:</strong> Ваши персональные проводники и помощники на всех этапах. Всегда на связи и готовы помочь.</li>
+        <li><strong>Эксперты по загородному строительству и ландшафту:</strong> Помогут оценить потенциал участка и воплотить ваши идеи в жизнь. От фундамента до ландшафта.</li>
+      </ul>
+      <p class="mt-4">
+        Обращаясь к нам, вы получаете не просто услуги, а надежного партнера в сфере недвижимости. Мы здесь, чтобы сделать процесс поиска и приобретения жилья простым, безопасным и приятным.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Тест-драйв -->
+<section class="section" id="services" style="background: #f8f9fa;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center" data-aos="zoom-in">
+        <div class="circle">10<br><small>дней</small></div>
+      </div>
+      <div class="col-md-8" data-aos="fade-left">
+        <h2>Тест-драйв услуг агентства</h2>
+        <p>Попробуйте наши услуги по продаже квартиры в течение 10 дней без риска.</p>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#testDriveModal">Попробовать</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Секция с благодарностями и наградами -->
+<section class="awards-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 data-aos="fade-up">Награды и достижения</h2>
+        <p class="lead" data-aos="fade-up" data-aos-delay="200">Признание профессионального сообщества и благодарности клиентов</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="award-item">
+          <div class="award-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h4 class="award-title">Премия "Лучшее агентство недвижимости 2023"</h4>
+          <p>Национальная премия в области недвижимости</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="award-item">
+          <div class="award-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h4 class="award-title">"Народное признание"</h4>
+          <p>Премия по результатам голосования клиентов</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="award-item">
+          <div class="award-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h4 class="award-title">"За профессиональism и этику ведения бизнеса"</h4>
+          <p>Награда Ассоциации риэлторов Беларуси</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="award-item">
+          <div class="award-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h4 class="award-title">"Лидер отрасли"</h4>
+          <p>Награда за вклад в развитие рынка недвижимости</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="award-item">
+          <div class="award-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h4 class="award-title">"Золотой стандарт"</h4>
+          <p>За безупречную репутацию и качество услуг</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="award-item">
+          <div class="award-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h4 class="award-title">"Эксперт года"</h4>
+          <p>Персональная награда руководителей компании</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.awards-section .award-item {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(42, 42, 42, 0.9) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+}
+
+.awards-section .award-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(247, 7, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.awards-section .award-item:hover::before {
+  left: 100%;
+}
+
+.awards-section .award-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(247, 7, 255, 0.2);
+  border-color: rgba(247, 7, 255, 0.3);
+}
+
+.awards-section .award-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f707ff, #ff9800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 2rem;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.awards-section .award-item:hover .award-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(247, 7, 255, 0.4);
+}
+
+.awards-section .award-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.awards-section .award-item p {
+  color: #b0b0b0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.tariff-section:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(247, 7, 255, 0.2);
+  border-color: rgba(247, 7, 255, 0.3);
+}
+</style>
+
+<!-- Секция с лицензией -->
+<section class="license-section">
+  <div class="container">
+    <div class="license-content" data-aos="fade-up">
+      <h2>Лицензии и сертификаты</h2>
+      <p class="lead mb-4">Наша деятельность полностью соответствует законодательству и имеет все необходимые разрешения</p>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card bg-dark text-white">
+            <div class="card-body text-center">
+              <i class="fas fa-file-certificate fa-3x mb-3"></i>
+              <h4>Лицензия №02240/446 от 11.07.2022</h4>
+              <p>Выдана Министерством юстиции Республики Беларусь на осуществление деятельности в сфере недвижимости</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <p>Все наши специалисты имеют соответствующие сертификаты и регулярно проходят повышение квалификации</p>
+        <a href="#" class="btn btn-warning mt-3">Скачать копию лицензии (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Юридическая документация -->
+<section class="legal-docs" id="legal">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Юридическая документация</h2>
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h5>Договор купли-продажи</h5>
+          <p>Типовой договор купли-продажи недвижимости</p>
+          <a href="https://example.com/dogovor-kupli-prodazhi.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h5>Договор аренды</h5>
+          <p>Типовой договор аренды жилого помещения</p>
+          <a href="https://example.com/dogovor-arendy.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h5>Акт приема-передачи</h5>
+          <p>Акт приема-передачи недвижимого имущества</p>
+          <a href="https://example.com/akt-priema-peredachi.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h5>Соглашение о задатке</h5>
+          <p>Соглашение о внесении задатка при покупке недвижимости</p>
+          <a href="https://example.com/soglashenie-zadatok.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <h5>Доверенность</h5>
+          <p>Доверенность на совершение действий с недвижимостью</p>
+          <a href="https://example.com/doverennost.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-key"></i>
+          </div>
+          <h5>Предварительный договор</h5>
+          <p>Предварительный договор купли-продажи недвижимости</p>
+          <a href="https://example.com/predvaritelny-dogovor.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h5>Договор с агентом</h5>
+          <p>Договор на оказание риэлторских услуг</p>
+          <a href="https://example.com/dogovor-s-agentom.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="doc-card text-center">
+          <div class="doc-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h5>Опись имущества</h5>
+          <p>Опись передаваемого имущества при аренде</p>
+          <a href="https://example.com/opis-imuschestva.pdf" class="doc-link" target="_blank">Скачать PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.legal-docs .doc-card {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(42, 42, 42, 0.9) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+}
+
+.legal-docs .doc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(247, 7, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.legal-docs .doc-card:hover::before {
+  left: 100%;
+}
+
+.legal-docs .doc-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(247, 7, 255, 0.2);
+  border-color: rgba(247, 7, 255, 0.3);
+}
+
+.legal-docs .doc-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f707ff, #ff9800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 2rem;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.legal-docs .doc-card:hover .doc-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(247, 7, 255, 0.4);
+}
+
+.legal-docs .doc-card h5 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.legal-docs .doc-card p {
+  color: #b0b0b0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.legal-docs .doc-link {
+  background: linear-gradient(135deg, #f707ff, #ff9800);
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.legal-docs .doc-link:hover {
+  background: linear-gradient(135deg, #ff9800, #f707ff);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(247, 7, 255, 0.4);
+  color: #fff;
+  text-decoration: none;
+}
+</style>
+
+
+<div id="footer-placeholder"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<!-- Загрузчик header -->
+<script src="js/header-loader.js" defer></script>
+<!-- Load Components JS -->
+<script src="js/load-components.js" defer></script>
+<!-- Common JavaScript -->
+<script src="js/common.js" defer></script>
+<!-- Forms JavaScript -->
+<script src="js/forms.js" defer></script>
+<!-- Toast JavaScript -->
+<script src="js/toast.js" defer></script>
+<!-- Page-specific JavaScript -->
+<script src="js/info.js" defer></script>
+
+<!-- Плавающая кнопка чата Telegram -->
+<div class="telegram-chat-widget">
+  <a href="https://t.me/fattoriaminsk" target="_blank" class="telegram-chat-btn" title="Написать в Telegram">
+    <i class="fab fa-telegram-plane"></i>
+    <span class="chat-text">Чат</span>
+  </a>
+</div>
+</body>
+</html>
+
+

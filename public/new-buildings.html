@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Новостройки Минска и Беларуси - актуальные предложения от застройщиков. 1-3 комнатные квартиры в новых жилых комплексах." />
+  <meta name="keywords" content="новостройки Минск, купить квартиру, недвижимость Беларусь, жилые комплексы" />
+  <title>Новостройки | Fattoria.by</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/novostroyki.css" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C279E20DBY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-C279E20DBY');
+  </script>
+</head>
+<body>
+  <!-- Header and navigation from index.html -->
+  <div id="header-placeholder"></div>
+
+  <!-- Hero Section -->
+  <section class="new-buildings-hero">
+    <div class="container">
+      <h1>Новостройки</h1>
+      <p>Актуальные предложения от застройщиков</p>
+      <a href="#projects" class="btn btn-warning">Посмотреть проекты</a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="projects-catalog">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Projects Grid -->
+        <div class="col-12">
+          <!-- Filters Section -->
+          <div class="filters-section">
+            <div class="filter-buttons">
+              <button class="btn active" data-filter="all">Все проекты</button>
+              <button class="btn" data-filter="building">Строятся</button>
+              <button class="btn" data-filter="completed">Сданы</button>
+              <button class="btn" data-filter="planning">Проектируются</button>
+            </div>
+          </div>
+
+          <!-- Projects Grid -->
+          <div class="projects-grid" id="projects">
+            <div class="row g-4">
+              <!-- ЖК Левада -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="building">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/лев1.jpg" alt="ЖК Левада" />
+                    <div class="project-status-badge status-building">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Левада</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-3 комнаты</span>
+                      <span class="feature-tag">Река</span>
+                      <span class="feature-tag">Качественное строительство</span>
+                    </div>
+                    <div class="project-price">
+
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Левада')">Бесплатная консультация</button>
+<a href="новостройки/жк-левада.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Дубравинский -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="completed">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/ду1.png" alt="ЖК Дубравинский" />
+                    <div class="project-status-badge status-completed">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Дубравинский</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">2-4 комнаты</span>
+                      <span class="feature-tag">Парк</span>
+                      <span class="feature-tag">Молодой район</span>
+                    </div>
+                    <div class="project-price">
+          
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Дубравинский')">Бесплатная консультация</button>
+<a href="новостройки/жк-дубравинский.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Минск Мир -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="planning">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/мм1.png" alt="ЖК Минск Мир" />
+                    <div class="project-status-badge status-planning">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Минск Мир</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-3 комнаты</span>
+                      <span class="feature-tag">Центр</span>
+                      <span class="feature-tag">Город в городе</span>
+                    </div>
+                    <div class="project-price">
+             
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Минск Мир')">Бесплатная консультация</button>
+<a href="../новостройки/жк-минск-мир.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Маяк Минска -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="building">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/м1.png" alt="ЖК Маяк Минска" />
+                    <div class="project-status-badge status-building">Сдан</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Маяк Минска</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-4 комнаты</span>
+                      <span class="feature-tag">Восток</span>
+                      <span class="feature-tag">Нац. Библиотека</span>
+                    </div>
+                    <div class="project-price">
+                 
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Маяк Минска')">Бесплатная консультация</button>
+<a href="../новостройки/жк-маяк-минска.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Парк Челюскинцев -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="completed">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/пч1.png" alt="ЖК Парк Челюскинцев" />
+                    <div class="project-status-badge status-completed">Сдан</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Парк Челюскинцев</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-4 комнаты</span>
+                      <span class="feature-tag">Премиум</span>
+                      <span class="feature-tag">Консьерж</span>
+                    </div>
+                    <div class="project-price">
+                
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Парк Челюскинцев')">Бесплатная консультация</button>
+<a href="../новостройки/жк-парк-челюскинцев.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Новая Боровая -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="planning">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/нб3.jpg" alt="ЖК Новая Боровая" />
+                    <div class="project-status-badge status-planning">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Новая Боровая</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-4 комнаты</span>
+                      <span class="feature-tag">Экология</span>
+                      <span class="feature-tag">Чистый район</span>
+                    </div>
+                    <div class="project-price">
+             
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Новая Боровая')">Бесплатная консультация</button>
+<a href="../новостройки/жк-новая-боровая.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Зеленая Гавань -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="building">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/зб2.jpg" alt="ЖК Зеленая Гавань" />
+                    <div class="project-status-badge status-building">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Зеленая Гавань</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-4 комнаты</span>
+                      <span class="feature-tag">Лес</span>
+                      <span class="feature-tag">Природа</span>
+                    </div>
+                    <div class="project-price">
+
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Зеленая Гавань')">Бесплатная консультация</button>
+<a href="../новостройки/жк-зеленая-гавань.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Фарфоровый -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="completed">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/ф2.jpg" alt="ЖК Фарфоровый" />
+                    <div class="project-status-badge status-completed">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Фарфоровый</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-4 комнаты</span>
+                      <span class="feature-tag">Смарт-дом</span>
+                      <span class="feature-tag">Энергоэффективность</span>
+                    </div>
+                    <div class="project-price">
+                 
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Фарфоровый')">Бесплатная консультация</button>
+<a href="../новостройки/жк-фарфоровый.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- ЖК Комфорт Парк -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="building">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/кп2.jpg" alt="ЖК Комфорт Парк" />
+                    <div class="project-status-badge status-building">Сдан</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Комфорт Парк</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-5 комнаты</span>
+                      <span class="feature-tag">Парковая зона</span>
+                      <span class="feature-tag">Развитая инфоструктура</span>
+                    </div>
+                    <div class="project-price">
+                 
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Комфорт Парк')">Бесплатная консультация</button>
+<a href="../новостройки/жк-комфорт-парк.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ЖК Депо -->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="completed">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/депо3.jpg" alt="ЖК Депо" />
+                    <div class="project-status-badge status-completed">Строится</div>
+                  </div>
+                  <div class="project-content">
+                    <h5 class="project-title">ЖК Депо</h5>
+                    <div class="project-features-grid">
+                      <span class="feature-tag">1-5 комнаты</span>
+                      <span class="feature-tag">Лофт-стиль</span>
+                      <span class="feature-tag">Историческое здание</span>
+                    </div>
+                    <div class="project-price">
+                 
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Депо')">Бесплатная консультация</button>
+<a href="../новостройки/жк-депо.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+           
+             
+              <!-- ЖК вершина-->
+              <div class="col-lg-4 col-md-6 project-card-wrapper" data-status="building">
+                <div class="project-card-grid">
+                  <div class="project-image">
+                    <img src="../фото/ве1.png" alt="ЖК Вершина" />
+                    <div class="project-status-badge status-building">Строится</div>
+                  </div>
+                  <div class="project-content">
+<h5 class="project-title">ЖК Вершина</h5>
+<div class="project-features-grid">
+                      <span class="feature-tag">1-4 комнаты</span>
+                      <span class="feature-tag">Современный</span>
+                      <span class="feature-tag">Комфорт</span>
+                    </div>
+                    <div class="project-price">
+
+                    </div>
+                    <div class="project-actions">
+                      <button class="btn btn-outline-warning btn-sm" onclick="openContactModal('ЖК Вершина')">Бесплатная консультация</button>
+                      <a href="../новостройки/жк-вершина.html" class="btn btn-warning btn-sm">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+             
+
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer from index.html -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Contact Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Получить консультацию</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            Оставьте заявку и наш специалист свяжется с вами в ближайшее время
+          </div>
+          <form class="contact-form" id="modalContactForm">
+            <input type="hidden" id="modalProjectName" name="project">
+            <div class="mb-3">
+              <label class="form-label">Ваше имя *</label>
+              <input type="text" class="form-control" placeholder="Введите ваше имя" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Телефон *</label>
+              <input type="tel" class="form-control" placeholder="+375 XX XXX-XX-XX" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="ваш@email.com">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Сообщение</label>
+              <textarea class="form-control" rows="3" placeholder="Расскажите, какая квартира вас интересует..."></textarea>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-warning">
+                <i class="fas fa-paper-plane me-2"></i>Отправить заявку
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+  <!-- Component Loader -->
+  <script src="js/load-components.js" defer></script>
+  <!-- Google Forms Integration -->
+  <script src="js/google-forms.js" defer></script>
+  <!-- Forms JS -->
+  <script src="js/forms.js" defer></script>
+  <!-- Novostroyki Scroll JS -->
+  <script src="js/novostroyki-scroll.js" defer></script>
+
+  <script>
+    // Function to open contact modal
+    function openContactModal(projectName) {
+      document.getElementById('modalProjectName').value = projectName;
+      const modal = new bootstrap.Modal(document.getElementById('contactModal'));
+      modal.show();
+    }
+
+    // Handle modal form submission
+    document.getElementById('modalContactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const name = form.querySelector('input[type="text"]');
+      const phone = form.querySelector('input[type="tel"]');
+      const email = form.querySelector('input[type="email"]');
+      const message = form.querySelector('textarea');
+
+      const nameValue = name.value.trim();
+      const phoneValue = phone.value.trim();
+      const emailValue = email.value.trim();
+      const messageValue = message.value.trim();
+
+      // Validation
+      if (!nameValue) {
+        alert('Пожалуйста, укажите ваше имя');
+        name.focus();
+        return;
+      }
+
+      if (!phoneValue) {
+        alert('Пожалуйста, укажите номер телефона');
+        phone.focus();
+        return;
+      }
+
+      if (!isValidPhone(phoneValue)) {
+        alert('Пожалуйста, введите корректный номер телефона (+375 XX XXX-XX-XX)');
+        phone.focus();
+        return;
+      }
+
+      if (emailValue && !isValidEmail(emailValue)) {
+        alert('Пожалуйста, введите корректный email');
+        email.focus();
+        return;
+      }
+
+      // Prepare data
+      const submissionData = {
+        name: nameValue,
+        phone: phoneValue,
+        email: emailValue,
+        message: messageValue,
+        project: formData.get('project') || 'Новостройки',
+        timestamp: new Date().toISOString(),
+        source: window.location.pathname
+      };
+
+      // Submit
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Отправляем...';
+
+      try {
+        const saved = await saveFormData(submissionData);
+
+        if (saved) {
+          alert('Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время.');
+          bootstrap.Modal.getInstance(document.getElementById('contactModal')).hide();
+          form.reset();
+        } else {
+          alert('Спасибо! Заявка сохранена. Мы свяжемся с вами в ближайшее время.');
+          bootstrap.Modal.getInstance(document.getElementById('contactModal')).hide();
+          form.reset();
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showToast('Произошла ошибка при отправке. Попробуйте еще раз.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+
+    // Phone validation
+    function isValidPhone(phone) {
+      const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+      return phoneRegex.test(phone.replace(/\s/g, ''));
+    }
+
+    // Email validation
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Save form data to server
+    async function saveFormData(data) {
+      try {
+        const response = await fetch('/api/submit-form.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        return response.ok;
+      } catch (error) {
+
+        saveToLocalStorage(data);
+        return false;
+      }
+    }
+
+    // Save to localStorage as fallback
+    function saveToLocalStorage(data) {
+      try {
+        const existingForms = JSON.parse(localStorage.getItem('pendingForms') || '[]');
+        existingForms.push(data);
+        localStorage.setItem('pendingForms', JSON.stringify(existingForms));
+      } catch (error) {
+        console.error('localStorage save failed:', error);
+      }
+    }
+  </script>
+</body>
+</html>
+
+
