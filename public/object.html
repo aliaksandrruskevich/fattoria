@@ -15,8 +15,7 @@
   <!-- Объединенные стили для index -->
   <link rel="stylesheet" href="/css/index-combined.css">
   <!-- Yandex Maps API -->
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_YANDEX_MAPS_API_KEY&lang=ru_RU" type="text/javascript"></script>
-
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C279E20DBY"></script>
   <script>
@@ -139,7 +138,7 @@
 <!-- Back to list button -->
 <section class="container pb-5">
   <div class="text-center">
-    <a href="//properties" class="btn btn-outline-primary">
+    <a href="/properties" class="btn btn-outline-primary">
       <i class="fas fa-arrow-left"></i> Вернуться к списку объектов
     </a>
   </div>
@@ -212,19 +211,19 @@ function displayPropertyDetails(property) {
   document.getElementById('propertyLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.location}`;
   document.getElementById('propertyPrice').textContent = formatPrice(property.price, property.currency);
 
-  // Update gallery
-  const photos = property.photos || [];
-  if (photos.length > 0) {
-    document.getElementById('mainPropertyImage').src = photos[0];
+ // Update gallery
+const photos = property.photos || [];
+if (photos.length > 0) {
+  document.getElementById('mainPropertyImage').src = photos[0];
 
-    if (photos.length > 1) {
-      const thumbnailGallery = document.getElementById('thumbnailGallery');
-      thumbnailGallery.innerHTML = photos.slice(1, 7).map((photo, index) =>
-        `<img src="${photo}" alt="Фото ${index + 2}" onclick="changeMainImage('${photo}')" class="${index === 0 ? 'active' : ''}">`
-      ).join('');
-    }
+  if (photos.length > 1) {
+    const thumbnailGallery = document.getElementById('thumbnailGallery');
+    thumbnailGallery.innerHTML = photos.slice(1, 7).map((photo, index) =>
+      `<img src="${photo}" alt="Фото ${index + 2}" data-photo="${photo}" class="thumbnail-img ${index === 0 ? 'active' : ''}">`
+    ).join('');
   }
-
+} 
+  
   // Update features
   const featuresContainer = document.getElementById('propertyFeatures');
   if (property.features && property.features.length > 0) {
@@ -243,7 +242,10 @@ function displayPropertyDetails(property) {
   document.getElementById('agentPhone').innerHTML = property.contact_phone ?
     `<a href="tel:${property.contact_phone}">${property.contact_phone}</a>` :
     'Телефон не указан';
-}
+    }
+
+
+
 
 function formatPrice(price, currency = 'USD') {
   if (!price) return 'Цена по запросу';
@@ -266,7 +268,7 @@ function changeMainImage(src) {
   document.querySelectorAll('.thumbnail-gallery img').forEach(img => {
     img.classList.remove('active');
   });
-  event.target.classList.add('active');
+    e.target.classList.add('active');
 }
 
 function initPropertyMap(property) {
@@ -316,10 +318,16 @@ function showError(message) {
     <div class="alert alert-danger text-center" role="alert">
       <h4 class="alert-heading">Ошибка</h4>
       <p>${message}</p>
-      <a href="//properties" class="btn btn-primary">Вернуться к списку</a>
+     <a href="/properties" class="btn btn-primary">Вернуться к списку</a>
     </div>
   `;
 }
+// Добавляем обработчики для миниатюр
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('thumbnail-img')) {
+        changeMainImage(e.target.dataset.photo);
+    }
+});
 
 // Форма теперь обрабатывается в js/forms.js
 </script>
@@ -468,7 +476,3 @@ function showError(message) {
 </style>
 </body>
 </html>
-
-
-
-<script src="/js/object-photos-fix.js"></script>

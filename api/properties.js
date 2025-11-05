@@ -211,31 +211,41 @@ function parsePhotos(photosData) {
     try {
         let photos = [];
         
+        // Если photosData - массив объектов с атрибутами
         if (Array.isArray(photosData)) {
             photos = photosData.map(photo => {
-                return photo["@_picture"] || photo["@_url"] || photo["_"] || photo;
-            });
-        } else if (photosData.photo) {
+                // Пробуем разные варианты получения URL
+                return photo["@_picture"] || photo["@_url"] || photo["_"] || photo["$"]?.picture || photo;
+            }).filter(url => url && url !== "null" && !url.startsWith("@"));
+        } 
+        // Если photosData - объект с photo внутри
+        else if (photosData.photo) {
             const photoArray = Array.isArray(photosData.photo) ? photosData.photo : [photosData.photo];
             photos = photoArray.map(photo => {
-                return photo["@_picture"] || photo["@_url"] || photo["_"] || photo;
-            });
-        } else if (typeof photosData === "string") {
+                return photo["@_picture"] || photo["@_url"] || photo["_"] || photo["$"]?.picture || photo;
+            }).filter(url => url && url !== "null" && !url.startsWith("@"));
+        }
+        // Если строка
+        else if (typeof photosData === "string" && photosData !== "null") {
             try {
                 const parsed = JSON.parse(photosData);
-                return Array.isArray(parsed) ? parsed : [];
+                return Array.isArray(parsed) ? parsed : [parsed];
             } catch {
-                return [photosData];
+                return photosData.startsWith("@") ? [] : [photosData];
             }
         }
         
-        return photos.filter(photo => photo && photo !== "null");
+        return photos.filter(photo => 
+            photo && 
+            photo !== "null" && 
+            !photo.startsWith("@") &&
+            typeof photo === "string"
+        );
     } catch (error) {
         console.error("Error parsing photos:", error);
         return [];
     }
 }
-
 // Функция форматирования телефона
 function formatPhone(phone) {
     if (!phone || phone === "null") return "";

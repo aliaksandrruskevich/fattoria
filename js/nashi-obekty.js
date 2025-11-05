@@ -116,11 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Создаем контейнер для карточек
     const container = document.createElement('div');
-    container.className = 'row g-4';
+    container.className = 'row';
 
     currentProperties.forEach((property, index) => {
       const col = document.createElement('div');
-      col.className = 'col-md-6 col-lg-4';
+      col.className = 'col-md-6 col-lg-6 col-xl-4 mb-4';
       col.setAttribute('data-aos', 'fade-up');
       col.setAttribute('data-aos-delay', (index * 100).toString());
 
@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function createPropertyCard(property) {
     const card = document.createElement('div');
     card.className = 'property-card h-100';
+ // ← ДОБАВЬ ЭТУ СТРОКУ
 
     // Безопасная загрузка изображения
     const imageUrl = getSafePhotoUrl(property.photos);
@@ -239,10 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработчик кнопки "Подробнее"
     const viewBtn = card.querySelector('.view-details-btn');
-    viewBtn.addEventListener('click', function() {
-      const propertyId = this.getAttribute('data-property-id');
-      showPropertyDetails(propertyId);
-    });
+   viewBtn.addEventListener('click', function() {
+    // Используем маршрут с параметром в пути
+    window.location.href = `/object/${property.unid}`;
+});
 
     return card;
   }
