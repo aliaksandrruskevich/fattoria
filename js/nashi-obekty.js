@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     currentProperties.forEach((property, index) => {
       const col = document.createElement('div');
-      col.className = 'col-md-6 col-lg-6 col-xl-4 mb-4';
+      col.className = 'col-md-6 col-lg-6 col-xl-4 mb-4'; col.style.cssText = 'flex: 0 0 30% !important; max-width: 30% !important; margin: 0.5% !important;';
       col.setAttribute('data-aos', 'fade-up');
       col.setAttribute('data-aos-delay', (index * 100).toString());
 
