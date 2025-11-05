@@ -423,11 +423,25 @@ const databaseFunctions = {
                             row.features = [];
                         }
                     });
-                    resolve(rows);
+                                       resolve(rows);
+                }
+            });
+        });
+    },  // ← запятая после getActiveProperties
+
+    // Получение общего количества объектов
+    getPropertiesCount: () => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT COUNT(*) as count FROM properties WHERE archive = 0';
+            db.get(query, [], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row.count);
                 }
             });
         });
     }
-};
+};  // ← закрывающая скобка объекта databaseFunctions
 
 module.exports = { db, ...databaseFunctions };

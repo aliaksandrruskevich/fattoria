@@ -360,3 +360,15 @@ app.get('/api/properties-with-photos', (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+// API endpoint для подсчета объектов
+app.get('/api/properties/count', async (req, res) => {
+    try {
+        const db = require('./db');
+        const count = await db.getPropertiesCount();
+        res.json({ count: count });
+    } catch (error) {
+        console.error('Error getting properties count:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
