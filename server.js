@@ -51,6 +51,114 @@ app.use((req, res, next) => {
 // Обслуживаем статические файлы из папки public
 app.use(express.static("public"));
 
+// Маршруты без .html
+app.get('/object', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "object.html"));
+});
+
+app.get('/properties', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "properties.html"));
+});
+
+app.get('/new-buildings', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "new-buildings.html"));
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "about.html"));
+});
+
+app.get('/services-buyers', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "services-buyers.html"));
+});
+
+app.get('/services-sellers', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "services-sellers.html"));
+});
+
+app.get('/information', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "information.html"));
+});
+
+app.get('/founders', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "founders.html"));
+});
+
+app.get('/staff', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "staff.html"));
+});
+
+app.get('/tariff-grid', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "tariff-grid.html"));
+});
+
+app.get('/article', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "article.html"));
+});
+
+app.get('/category', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "category.html"));
+});
+
+/// Маршруты для жилых комплексов (латинские URL)
+app.get('/jk/verhina', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-вершина.html"));
+});
+
+app.get('/jk/depo', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-депо.html"));
+});
+
+app.get('/jk/dubravinsky', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-дубравинский.html"));
+});
+
+app.get('/jk/zelenaya-gavan', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-зеленая-гавань.html"));
+});
+
+app.get('/jk/komfort-park', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-комфорт-парк.html"));
+});
+
+app.get('/jk/levada', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-левада.html"));
+});
+
+app.get('/jk/mayak-minska', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-маяк-минска.html"));
+});
+
+app.get('/jk/minsk-mir', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-минск-мир.html"));
+});
+
+app.get('/jk/novaya-borovaya', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-новая-боровая.html"));
+});
+
+app.get('/jk/park-chelyuskincev', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-парк-челюскинцев.html"));
+});
+
+app.get('/jk/farforovy', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-фарфоровый.html"));
+});
+app.get('/jk/levada', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-левада.html"));
+});
+
+app.get('/jk/minsk-mir', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-минск-мир.html"));
+});
+
+app.get('/jk/novaya-borovaya', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-новая-боровая.html"));
+});
+
+app.get('/jk/park-chelyuskincev', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-парк-челюскинцев.html"));
+});
 // Если нет папки public, обслуживаем из корня
 app.use(express.static("."));
 

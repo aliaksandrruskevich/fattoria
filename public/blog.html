@@ -103,7 +103,7 @@
                 <div class="blog-meta">
                   <span><i class="fas fa-calendar"></i> 28 февраля 2024</span>
                 </div>
-                <a href="article.html?slug=trendy-zagorodnogo-zhilya-v-belarusi" class="btn btn-outline-warning btn-sm">Читать</a>
+                <a href="/article?slug=trendy-zagorodnogo-zhilya-v-belarusi" class="btn btn-outline-warning btn-sm">Читать</a>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@
                 <div class="blog-meta">
                   <span><i class="fas fa-calendar"></i> 20 февраля 2024</span>
                 </div>
-                <a href="article.html?slug=kak-vybrat-pomeshchenie-dlya-biznesa" class="btn btn-outline-warning btn-sm">Читать</a>
+                <a href="/article?slug=kak-vybrat-pomeshchenie-dlya-biznesa" class="btn btn-outline-warning btn-sm">Читать</a>
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@
                 <div class="blog-meta">
                   <span><i class="fas fa-calendar"></i> 15 февраля 2024</span>
                 </div>
-                <a href="article.html?slug=remont-kvartiry-s-chego-nachat" class="btn btn-outline-warning btn-sm">Читать</a>
+                <a href="/article?slug=remont-kvartiry-s-chego-nachat" class="btn btn-outline-warning btn-sm">Читать</a>
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@
                 <div class="blog-meta">
                   <span><i class="fas fa-calendar"></i> 8 февраля 2024</span>
                 </div>
-                <a href="article.html?slug=neobhodimye-dokumenty-dlya-sdelki" class="btn btn-outline-warning btn-sm">Читать</a>
+                <a href="/article?slug=neobhodimye-dokumenty-dlya-sdelki" class="btn btn-outline-warning btn-sm">Читать</a>
               </div>
             </div>
           </div>
@@ -307,7 +307,7 @@ function renderCategories() {
         <div class="category-icon">
           <i class="fas ${categoryIcons[category] || 'fa-tag'}"></i>
         </div>
-        <h5><a href="category.html?category=${encodeURIComponent(category)}" class="text-decoration-none">${category}</a></h5>
+        <h5><a href="/category?category=${encodeURIComponent(category)}" class="text-decoration-none">${category}</a></h5>
         <p>Статьи в категории</p>
       </div>
     `;
@@ -337,7 +337,7 @@ function renderFeaturedArticles() {
             <span><i class="fas fa-calendar"></i> ${new Date(article.date).toLocaleDateString('ru-RU')}</span>
             <span><i class="fas fa-eye"></i> ${article.views} просмотров</span>
           </div>
-          <a href="article.html?slug=${article.slug}" class="btn btn-warning btn-sm">Читать далее</a>
+          <a href="/article?slug=${article.slug}" class="btn btn-warning btn-sm">Читать далее</a>
         </div>
       </div>
     `;
@@ -372,7 +372,7 @@ function renderAllArticles() {
                 <span><i class="fas fa-calendar"></i> ${new Date(article.date).toLocaleDateString('ru-RU')}</span>
                 <span><i class="fas fa-eye"></i> ${article.views} просмотров</span>
               </div>
-              <a href="article.html?slug=${article.slug}" class="btn btn-outline-warning btn-sm">Читать</a>
+              <a href="/article?slug=${article.slug}" class="btn btn-outline-warning btn-sm">Читать</a>
             </div>
           </div>
         </div>

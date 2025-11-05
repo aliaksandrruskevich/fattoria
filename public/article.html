@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
       categories.forEach(category => {
         const li = document.createElement('li');
         li.className = 'list-group-item';
-        li.innerHTML = `<a href="category.html?category=${encodeURIComponent(category)}">${category}</a>`;
+        li.innerHTML = `<a href="/category?category=${encodeURIComponent(category)}">${category}</a>`;
         categoriesList.appendChild(li);
       });
 
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const div = document.createElement('div');
         div.className = 'mb-3';
         div.innerHTML = `
-          <a href="article.html?slug=${art.slug}" class="text-decoration-none">
+          <a href="/article?slug=${art.slug}" class="text-decoration-none">
             <h6>${art.title}</h6>
             <small class="text-muted">${art.views} просмотров</small>
           </a>

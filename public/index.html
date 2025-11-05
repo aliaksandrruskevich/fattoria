@@ -121,7 +121,7 @@
           <div class="category-content">
             <h4>Новостройки</h4>
             <p>Современные жилые комплексы с отделкой</p>
-            <a href="new-buildings.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+            <a href="/new-buildings" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@
           <div class="category-content">
             <h4>Наши объекты</h4>
             <p>Лучшие предложения от нашего агентства</p>
-            <a href="properties.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+            <a href="/properties" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@
           <div class="category-content">
             <h4>Коммерческая</h4>
             <p>Помещения для бизнеса и инвестиций</p>
-            <a href="commercial-properties.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+            <a href="/commercial-properties" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@
           <div class="category-content">
             <h4>Загородная</h4>
             <p>Дома, коттеджи и участки за городом</p>
-            <a href="country-properties.html" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
+            <a href="/country-properties" class="btn btn-outline-light btn-sm mt-2">Смотреть</a>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@
       <!-- Специальные предложения будут загружены динамически -->
     </div>
     <div class="text-center mt-4">
-      <a href="properties.html" class="btn btn-outline-dark">Все предложения</a>
+      <a href="/properties" class="btn btn-outline-dark">Все предложения</a>
     </div>
   </div>
 </section>
@@ -325,14 +325,14 @@
         <div class="service-card dark-card">
           <h3>Услуги для продавцов</h3>
           <p>Мы поможем выгодно продать вашу недвижимость.</p>
-          <a href="services-sellers.html" target="_blank" class="btn btn-light">Подробнее</a>
+          <a href="/services-sellers" target="_blank" class="btn btn-light">Подробнее</a>
         </div>
       </div>
       <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="service-card dark-card">
           <h3>Услуги для покупателей</h3>
           <p>Подберем лучшие варианты квартир под ваши запросы.</p>
-          <a href="services-buyers.html" target="_blank" class="btn btn-light">Подробнее</a>
+          <a href="/services-buyers" target="_blank" class="btn btn-light">Подробнее</a>
         </div>
       </div>
     </div>
@@ -411,7 +411,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-8">
-        <p class="mb-0">Мы используем cookies для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с нашей <a href="cookie-policy.html" target="_blank">политикой cookie</a>.</p>
+        <p class="mb-0">Мы используем cookies для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с нашей <a href="/cookie-policy" target="_blank">политикой cookie</a>.</p>
       </div>
       <div class="col-md-4 text-end">
         <button id="acceptCookies" class="btn btn-warning btn-sm me-2">Принять</button>
@@ -733,7 +733,7 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
                   <p><strong>Местоположение:</strong> ${property.location}</p>
                   <p><strong>Тип:</strong> ${property.type}</p>
                   <p>${property.description.substring(0, 100)}...</p>
-                  <a href="object.html?unid=${property.unid}" class="btn btn-warning btn-sm">Подробнее</a>
+                  <a href="/object?unid=${property.unid}" class="btn btn-warning btn-sm">Подробнее</a>
                 </div>
               `
             });
@@ -782,7 +782,7 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
                   <p><strong>Описание:</strong> ${description}</p>
                   <div class="mt-4">
                     <a href="tel:${contactPhone}" class="btn btn-warning me-2">Заказать звонок</a>
-                    <button class="btn btn-outline-primary" onclick="window.location.href='properties.html'">Смотреть все объекты</button>
+                    <button class="btn btn-outline-primary" onclick="window.location.href='/properties'">Смотреть все объекты</button>
                   </div>
                 </div>
               </div>
