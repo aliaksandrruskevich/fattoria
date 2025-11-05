@@ -1,0 +1,22 @@
+.property-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.detail-item {
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.property-price-m2 {
+    color: #666;
+    font-size: 14px;
+    margin-top: 5px;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fattoria.by - Сотрудники</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/team-dark.css">
+  <!-- Combined CSS -->
+  <link rel="stylesheet" href="css/index-combined.css">
+</head>
+<body>
+
+<!-- Контейнер для уведомлений -->
+<div class="toast-container"></div>
+
+<div id="header-placeholder"></div>
+
+<!-- Модальное окно для сотрудников -->
+<div class="modal fade team-modal" id="teamMemberModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="team-modal-header">
+        <h3 class="modal-title" id="modalAgentName"></h3>
+        <p id="modalAgentPosition"></p>
+      </div>
+      <div class="team-modal-body">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <img id="modalAgentPhoto" class="modal-agent-img" alt="Фото сотрудника">
+            <div class="mt-3">
+              <p><strong>Опыт работы:</strong> <span id="modalAgentExperience"></span></p>
+              <p><strong>Рейтинг:</strong> <span id="modalAgentRating"></span>/5.0</p>
+              <p><strong>Отзывы:</strong> <span id="modalAgentReviews"></span></p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h5>О сотруднике</h5>
+            <p id="modalAgentAbout"></p>
+
+            <h5 class="mt-4">Специализация</h5>
+            <p id="modalAgentSpecialization"></p>
+
+            <h5 class="mt-4">Регионы работы</h5>
+            <p id="modalAgentRegions"></p>
+
+            <div class="modal-agent-contact">
+              <h5>Контакты</h5>
+              <p><strong>Телефон:</strong> <span id="modalAgentPhone"></span></p>
+              <div class="contact-buttons">
+                <a id="modalAgentWhatsApp" class="btn btn-success" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a id="modalAgentTelegram" class="btn btn-primary" target="_blank">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+                <a id="modalAgentViber" class="btn btn-purple" target="_blank">
+                  <i class="fab fa-viber"></i> Viber
+                </a>
+                <a id="modalAgentProfile" class="btn btn-outline-dark" target="_blank">
+                  <i class="fas fa-user"></i> Профиль на realt.by
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Наша команда -->
+<section class="team-section" id="team">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Профессиональная команда риелторов</h2>
+    <p class="text-center lead mb-5" data-aos="fade-up" data-aos-delay="100">
+      Наши специалисты помогут вам найти идеальный вариант недвижимости или выгодно продать вашу собственность
+    </p>
+    
+    <div id="loadingIndicator" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Загрузка...</span>
+      </div>
+      <p class="mt-2">Загрузка данных о сотрудниках...</p>
+    </div>
+    
+    <div id="teamGrid" class="team-grid"></div>
+  </div>
+</section>
+
+<!-- Почему выбирают нас -->
+<section class="section black-section" id="why-us">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Почему выбирают нашу команду</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h5>Профессионализм</h5>
+          <p>Все наши риелторы имеют высшее образование и регулярно проходят обучение</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h5>Опыт работы</h5>
+          <p>Средний стаж работы наших специалистов - более 5 лет на рынке недвижимости</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h5>Надежность</h5>
+          <p>Гарантия безопасности сделок и полное юридическое сопровождение</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h5>Оперативность</h5>
+          <p>Быстрый подбор объектов и оперативное оформление документов</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h5>Индивидуальный подход</h5>
+          <p>Учет всех пожеланий и потребностей каждого клиента</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+        <div class="text-center text-white">
+          <div class="service-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h5>Поддержка 24/7</h5>
+          <p>Круглосуточная поддержка и консультации по всем вопросам</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.team-section .team-member:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(247, 7, 255, 0.2);
+  border-color: rgba(247, 7, 255, 0.3);
+}
+</style>
+
+<div id="footer-placeholder"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<!-- Загрузчик header -->
+<script src="js/header-loader.js" defer></script>
+<!-- Load Components JS -->
+<script src="js/load-components.js" defer></script>
+<!-- Common JavaScript -->
+<script src="js/common.js" defer></script>
+<!-- Forms JavaScript -->
+<script src="js/forms.js" defer></script>
+<!-- Toast JavaScript -->
+<script src="js/toast.js" defer></script>
+<!-- Team JavaScript -->
+<script src="js/team-new.js" defer></script>
+
+
+</body>
+</html>
+
+
