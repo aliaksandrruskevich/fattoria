@@ -15,39 +15,7 @@
   <!-- Объединенные стили для index -->
   <link rel="stylesheet" href="/css/index-combined.css">
   <!-- Yandex Maps API -->
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C279E20DBY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-C279E20DBY');
-  </script>
-
-  <!-- PageSpeed Insights / Core Web Vitals Tracking -->
-  <script>
-    // Core Web Vitals tracking for Google Analytics
-    function sendToGoogleAnalytics({name, delta, value, id}) {
-      gtag('event', name, {
-        event_category: 'Web Vitals',
-        event_label: id,
-        value: Math.round(name === 'CLS' ? delta * 1000 : delta),
-        custom_map: { metric_value: value }
-      });
-    }
-
-    // Measure and report Core Web Vitals
-    import('https://unpkg.com/web-vitals@3?module')
-      .then(({getCLS, getFID, getFCP, getLCP, getTTFB}) => {
-        getCLS(sendToGoogleAnalytics);
-        getFID(sendToGoogleAnalytics);
-        getFCP(sendToGoogleAnalytics);
-        getLCP(sendToGoogleAnalytics);
-        getTTFB(sendToGoogleAnalytics);
-      });
-  </script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
 
@@ -161,15 +129,13 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Get property ID from URL - support both formats: /object/{id} and ?id={id}
+  // Get property ID from URL
   let propertyUnid = null;
   
-  // Try to get from path first (e.g., /object/123)
   const pathMatch = window.location.pathname.match(/\/object\/(.+)$/);
   if (pathMatch) {
     propertyUnid = pathMatch[1];
   } else {
-    // Fallback to query parameter (e.g., ?id=123)
     const urlParams = new URLSearchParams(window.location.search);
     propertyUnid = urlParams.get('id');
   }
@@ -202,32 +168,79 @@ async function loadPropertyDetails(unid) {
 }
 
 function displayPropertyDetails(property) {
+  console.log("🔍 Property data from API:", property);
+  console.log("📞 Available phone fields:", {
+    contact_phone: property.contact_phone,
+    contact_phone_1: property.contact_phone_1,
+    phone: property.phone,
+    contact_name: property.contact_name
+  });
+
   // Update page title
   document.title = `${property.title} | Fattoria.by`;
   document.getElementById('pageTitle').textContent = `${property.title} | Fattoria.by`;
 
   // Update main info
   document.getElementById('propertyTitle').textContent = property.title;
-  document.getElementById('propertyLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.location}`;
-  document.getElementById('propertyPrice').textContent = formatPrice(property.price, property.currency);
-
- // Update gallery
-const photos = property.photos || [];
-if (photos.length > 0) {
-  document.getElementById('mainPropertyImage').src = photos[0];
-
-  if (photos.length > 1) {
-    const thumbnailGallery = document.getElementById('thumbnailGallery');
-    thumbnailGallery.innerHTML = photos.slice(1, 7).map((photo, index) =>
-      `<img src="${photo}" alt="Фото ${index + 2}" data-photo="${photo}" class="thumbnail-img ${index === 0 ? 'active' : ''}">`
-    ).join('');
+  document.getElementById('propertyLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.address || property.location || 'Адрес не указан'}`;
+  
+  // Update price - используем priceUSD если есть, иначе formatPrice
+  if (property.priceUSD && property.priceUSD !== "договорная") {
+    document.getElementById('propertyPrice').textContent = property.priceUSD;
+  } else if (property.priceBYN && property.priceBYN !== "договорная") {
+    document.getElementById('propertyPrice').textContent = property.priceBYN;
+  } else {
+    document.getElementById('propertyPrice').textContent = formatPrice(property.price, property.currency);
   }
-} 
+
+  // Update gallery
+  const photos = property.photos || [];
+  if (photos.length > 0) {
+    document.getElementById('mainPropertyImage').src = photos[0];
+
+    if (photos.length > 1) {
+      const thumbnailGallery = document.getElementById('thumbnailGallery');
+      thumbnailGallery.innerHTML = photos.slice(1, 7).map((photo, index) =>
+        `<img src="${photo}" alt="Фото ${index + 2}" data-photo="${photo}" class="thumbnail-img ${index === 0 ? 'active' : ''}">`
+      ).join('');
+    }
+  }
   
   // Update features
   const featuresContainer = document.getElementById('propertyFeatures');
-  if (property.features && property.features.length > 0) {
-    featuresContainer.innerHTML = property.features.map(feature =>
+  const features = [];
+  
+  // Добавляем комнаты
+  if (property.rooms && property.rooms !== "" && property.rooms !== "null") {
+    features.push(`${property.rooms} комн.`);
+  }
+  
+  // Добавляем общую площадь
+  if (property.area_total && property.area_total !== "" && property.area_total !== "null") {
+    features.push(`${property.area_total} м²`);
+  }
+  
+  // Добавляем этаж
+  if (property.storey && property.storeys) {
+    features.push(`Этаж: ${property.storey}/${property.storeys}`);
+  }
+  
+  // Добавляем тип дома
+  if (property.house_type && property.house_type !== "" && property.house_type !== "null") {
+    const houseTypeMap = {
+      "п": "Панельный", "к": "Кирпичный", "м": "Монолитный", 
+      "б": "Блочный", "д": "Деревянный"
+    };
+    features.push(houseTypeMap[property.house_type] || property.house_type);
+  }
+  
+  // Добавляем год постройки
+  if (property.building_year && property.building_year !== "" && property.building_year !== "null") {
+    features.push(`${property.building_year} г.`);
+  }
+
+  if (features.length > 0) {
+    featuresContainer.innerHTML = features.map(feature =>
       `<div class="feature-item">${feature}</div>`
     ).join('');
   } else {
@@ -239,36 +252,76 @@ if (photos.length > 0) {
 
   // Update agent info
   document.getElementById('agentName').textContent = property.contact_name || 'Контактное лицо';
-  document.getElementById('agentPhone').innerHTML = property.contact_phone ?
-    `<a href="tel:${property.contact_phone}">${property.contact_phone}</a>` :
-    'Телефон не указан';
-    }
-
-
-
+  
+  // ИСПРАВЛЕННАЯ СТРОКА: Ищем телефон в правильном порядке полей
+  const mainPhone = property.contact_phone_1 || property.contact_phone || property.phone;
+  console.log("📞 Selected phone:", mainPhone);
+  
+  document.getElementById('agentPhone').innerHTML = mainPhone ?
+    `<a href="tel:${mainPhone}" style="color: #007bff; text-decoration: none; font-weight: 500;">
+      <i class="fas fa-phone me-2"></i>${formatPhoneNumber(mainPhone)}
+    </a>` :
+    '<span class="text-muted">Телефон не указан</span>';
+}
 
 function formatPrice(price, currency = 'USD') {
-  if (!price) return 'Цена по запросу';
+  if (!price || price === "договорная") return 'Цена по запросу';
 
   const currencySymbols = {
     'USD': '$',
     'EUR': '€',
-    'BYN': 'руб',
-    'RUB': 'р'
+    'BYN': 'руб.',
+    'RUB': '₽'
   };
 
   const symbol = currencySymbols[currency] || '$';
-  return new Intl.NumberFormat('ru-RU').format(price) + ' ' + symbol;
+  
+  if (typeof price === 'number') {
+    return new Intl.NumberFormat('ru-RU').format(price) + ' ' + symbol;
+  }
+  
+  return price + ' ' + symbol;
+}
+
+function formatPhoneNumber(phone) {
+  if (!phone) return '';
+  
+  console.log("📞 Formatting phone:", phone);
+  
+  // Очищаем от всего кроме цифр и дефисов
+  const cleaned = phone.replace(/[^\d-]/g, "");
+  
+  // Белорусские номера (полные)
+  if (cleaned.length === 12 && cleaned.startsWith('375')) {
+    return `+${cleaned.slice(0,3)} (${cleaned.slice(3,5)}) ${cleaned.slice(5,8)}-${cleaned.slice(8,10)}-${cleaned.slice(10)}`;
+  }
+  
+  // Российские номера
+  if (cleaned.length === 11 && cleaned.startsWith('7')) {
+    return `+${cleaned.slice(0,1)} (${cleaned.slice(1,4)}) ${cleaned.slice(4,7)}-${cleaned.slice(7,9)}-${cleaned.slice(9)}`;
+  }
+  
+  // Если номер короткий (111-90-90), добавляем код оператора A1 (29)
+  if (cleaned.length <= 7 || phone.match(/^\d{3}-\d{2}-\d{2}$/)) {
+    return `+375 (29) ${phone}`;
+  }
+  
+  // Если номер в формате 8029...
+  if (cleaned.length === 11 && cleaned.startsWith('8029')) {
+    return `+375 (29) ${cleaned.slice(3,6)}-${cleaned.slice(6,8)}-${cleaned.slice(8)}`;
+  }
+  
+  // Если не удалось отформатировать, возвращаем как есть
+  return phone;
 }
 
 function changeMainImage(src) {
   document.getElementById('mainPropertyImage').src = src;
 
-  // Update active thumbnail
   document.querySelectorAll('.thumbnail-gallery img').forEach(img => {
     img.classList.remove('active');
   });
-    e.target.classList.add('active');
+  event.target.classList.add('active');
 }
 
 function initPropertyMap(property) {
@@ -283,8 +336,7 @@ function initPropertyMap(property) {
     if (property.lat && property.lng) {
       coords = [property.lat, property.lng];
     } else {
-      // Try to geocode location
-      ymaps.geocode(property.location || 'Минск').then((res) => {
+      ymaps.geocode(property.address || property.location || 'Минск').then((res) => {
         const firstGeoObject = res.geoObjects.get(0);
         if (firstGeoObject) {
           coords = firstGeoObject.geometry.getCoordinates();
@@ -305,7 +357,7 @@ function initPropertyMap(property) {
 
     const placemark = new ymaps.Placemark(coords, {
       hintContent: property.title,
-      balloonContent: `${property.title}<br>${property.location}`
+      balloonContent: `${property.title}<br>${property.address || property.location}`
     });
 
     map.geoObjects.add(placemark);
@@ -318,18 +370,17 @@ function showError(message) {
     <div class="alert alert-danger text-center" role="alert">
       <h4 class="alert-heading">Ошибка</h4>
       <p>${message}</p>
-     <a href="/properties" class="btn btn-primary">Вернуться к списку</a>
+      <a href="/properties" class="btn btn-primary">Вернуться к списку</a>
     </div>
   `;
 }
+
 // Добавляем обработчики для миниатюр
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('thumbnail-img')) {
-        changeMainImage(e.target.dataset.photo);
-    }
+  if (e.target.classList.contains('thumbnail-img')) {
+    changeMainImage(e.target.dataset.photo);
+  }
 });
-
-// Форма теперь обрабатывается в js/forms.js
 </script>
 
 <style>
@@ -407,6 +458,7 @@ document.addEventListener('click', function(e) {
   padding: 0.5rem;
   border-radius: 4px;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .description-section {
@@ -441,11 +493,14 @@ document.addEventListener('click', function(e) {
 .agent-name {
   font-weight: bold;
   margin-bottom: 0.25rem;
+  font-size: 1.1rem;
 }
 
 .agent-phone a {
   color: #007bff;
   text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .agent-phone a:hover {
@@ -472,7 +527,11 @@ document.addEventListener('click', function(e) {
   .features-grid {
     grid-template-columns: 1fr;
   }
+  
+  .price {
+    font-size: 1.5rem;
+  }
 }
 </style>
 </body>
-</html>
+</html>ы

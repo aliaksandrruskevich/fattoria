@@ -31,6 +31,7 @@ style.textContent = `
         background: white;
         transition: all 0.3s ease;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        cursor: pointer;
     }
     
     .property-card:hover {
@@ -57,6 +58,15 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Функция для открытия деталей объекта
+function showPropertyDetails(property) {
+    console.log('🔍 Открываем объект:', property.id);
+    
+    // Переходим на страницу объекта
+    const propertyId = property.unid || property.id;
+    window.location.href = `/object/${propertyId}`;
+}
 
 // Основная функция загрузки
 async function loadProperties(page = 1) {
@@ -125,11 +135,23 @@ function displayProperties(properties) {
                     <i class="fas fa-map-marker-alt text-danger"></i> ${address}
                 </div>
                 ${property.area_total ? `<div style="margin-bottom: 8px;"><small><strong>Площадь:</strong> ${property.area_total} м²</small></div>` : ''}
-                <button class="btn btn-warning btn-sm" style="width: 100%;" onclick="console.log('Объект:', ${property.id})">
+                <button class="btn btn-warning btn-sm" style="width: 100%;">
                     <i class="fas fa-eye"></i> Подробнее
                 </button>
             </div>
         `;
+        
+        // Делаем карточку кликабельной
+        card.onclick = function() {
+            showPropertyDetails(property);
+        };
+        
+        // Делаем кнопку кликабельной
+        const button = card.querySelector('button');
+        button.onclick = function(e) {
+            e.stopPropagation(); // Останавливаем всплытие чтобы не сработал клик на карточке
+            showPropertyDetails(property);
+        };
         
         container.appendChild(card);
     });

@@ -3,7 +3,6 @@ const xml2js = require("xml2js");
 const sqlite3 = require("sqlite3").verbose();
 const db = require("../db");
 
-// Класс XMLParser
 class XMLParser {
     constructor() {
         this.parser = new xml2js.Parser({
@@ -24,7 +23,6 @@ class XMLParser {
     }
 }
 
-// Функция для загрузки XML
 function fetchXML() {
     return new Promise((resolve, reject) => {
         const options = {
@@ -43,23 +41,15 @@ function fetchXML() {
             let data = "";
             console.log("Status: " + res.statusCode);
 
-            res.on("data", (chunk) => {
-                data += chunk;
-            });
-
+            res.on("data", (chunk) => data += chunk);
             res.on("end", () => {
                 console.log("✅ XML fetched successfully");
                 resolve(data);
             });
         });
 
-        req.on("error", (err) => {
-            console.error("❌ Fetch error:", err);
-            reject(err);
-        });
-
+        req.on("error", reject);
         req.on("timeout", () => {
-            console.error("❌ Request timeout");
             req.destroy();
             reject(new Error("Request timeout"));
         });
@@ -68,12 +58,50 @@ function fetchXML() {
     });
 }
 
+// УПРОЩЕННАЯ ФУНКЦИЯ ФОРМАТИРОВАНИЯ ТЕЛЕФОНА
+function formatPhone(phone) {
+    if (!phone || phone === "null") return "";
+    return "+375 (29) " + phone;
+}
+
+// ФУНКЦИЯ ИЗВЛЕЧЕНИЯ ДАННЫХ ИЗ ЗАПИСИ
+function extractRecordData(record) {
+    console.log("🔍 DEBUG - All record fields:", Object.keys(record));
+    
+    const phoneFields = ['contact_phone_1', 'contact_phone', 'phone', 'telephone', 'mobile_phone'];
+    const nameFields = ['contact_name', 'agent_name', 'name', 'contact_person'];
+    
+    let phone = "";
+    let name = "Фаттория";
+    
+    // Ищем телефон
+    for (const field of phoneFields) {
+        console.log("🔍 Checking phone field " + field + ":", record[field]);
+        if (record[field] && record[field] !== "null" && record[field] !== "") {
+            console.log(`📞 Found phone in ${field}:`, record[field]);
+            phone = formatPhone(record[field]);
+            break;
+        }
+    }
+    
+    // Ищем имя с проверкой кодировки
+    for (const field of nameFields) {
+        console.log("🔍 Checking name field " + field + ":", record[field]);
+        if (record[field] && record[field] !== "null" && record[field] !== "") {
+            console.log(`👤 Found name in ${field}:`, record[field]);
+            // Пробуем исправить кодировку
+            name = Buffer.from(record[field], 'binary').toString('utf8');
+            break;
+        }
+    }
+    
+    console.log("✅ Final result - Name:", name, "Phone:", phone);
+    return { phone, name };
+}
 function cleanPrice(priceData) {
     if (!priceData || !priceData["_"]) return "договорная";
-    
     const priceValue = priceData["_"];
     if (priceValue === "null" || priceValue === "undefined") return "договорная";
-
     const num = parseFloat(priceValue);
     return !isNaN(num) && num > 0 ? num : "договорная";
 }
@@ -137,11 +165,8 @@ function createDetails(record) {
     if (record.storey && record.storeys) parts.push(record.storey + "/" + record.storeys);
     if (record.house_type && record.house_type !== "null") {
         const houseTypeMap = {
-            "п": "Панельный",
-            "к": "Кирпичный",
-            "м": "Монолитный",
-            "б": "Блочный",
-            "д": "Деревянный"
+            "п": "Панельный", "к": "Кирпичный", "м": "Монолитный", 
+            "б": "Блочный", "д": "Деревянный"
         };
         parts.push(houseTypeMap[record.house_type] || record.house_type);
     }
@@ -166,67 +191,32 @@ function formatPriceBYN(price) {
     return price + " руб.";
 }
 
-function formatPricePerM2(priceM2) {
-    if (!priceM2) return "";
-    
-    let priceValue;
-    if (typeof priceM2 === "object" && priceM2["_"]) {
-        priceValue = priceM2["_"];
-    } else if (typeof priceM2 === "string") {
-        priceValue = priceM2;
-    } else {
-        return "";
-    }
-    
-    if (!priceValue || priceValue === "null") return "";
-    
-    const num = parseFloat(priceValue);
-    return !isNaN(num) ? num.toLocaleString("ru-RU") + " USD/м²" : "";
-}
-
 function cleanDescription(description) {
     if (!description || description === "null") return "Описание отсутствует";
-    
     let cleaned = description
         .replace(/<br\s*\/?>/gi, "\n")
-        .replace(/<p>/gi, "\n")
-        .replace(/<\/p>/gi, "\n")
         .replace(/<[^>]*>/g, "")
         .replace(/&nbsp;/g, " ")
-        .replace(/&laquo;/g, "«")
-        .replace(/&raquo;/g, "»")
-        .replace(/&mdash;/g, "—")
-        .replace(/&quot;/g, "\"")
         .replace(/\s+/g, " ")
         .trim();
-
     cleaned = cleaned.replace(/\n\s*\n/g, "\n").trim();
     return cleaned || "Описание отсутствует";
 }
 
-// Улучшенная функция обработки фото
 function parsePhotos(photosData) {
     if (!photosData) return [];
-    
     try {
         let photos = [];
-        
-        // Если photosData - массив объектов с атрибутами
         if (Array.isArray(photosData)) {
             photos = photosData.map(photo => {
-                // Пробуем разные варианты получения URL
                 return photo["@_picture"] || photo["@_url"] || photo["_"] || photo["$"]?.picture || photo;
             }).filter(url => url && url !== "null" && !url.startsWith("@"));
-        } 
-        // Если photosData - объект с photo внутри
-        else if (photosData.photo) {
+        } else if (photosData.photo) {
             const photoArray = Array.isArray(photosData.photo) ? photosData.photo : [photosData.photo];
             photos = photoArray.map(photo => {
                 return photo["@_picture"] || photo["@_url"] || photo["_"] || photo["$"]?.picture || photo;
             }).filter(url => url && url !== "null" && !url.startsWith("@"));
-        }
-        // Если строка
-        else if (typeof photosData === "string" && photosData !== "null") {
+        } else if (typeof photosData === "string" && photosData !== "null") {
             try {
                 const parsed = JSON.parse(photosData);
                 return Array.isArray(parsed) ? parsed : [parsed];
@@ -234,34 +224,14 @@ function parsePhotos(photosData) {
                 return photosData.startsWith("@") ? [] : [photosData];
             }
         }
-        
-        return photos.filter(photo => 
-            photo && 
-            photo !== "null" && 
-            !photo.startsWith("@") &&
-            typeof photo === "string"
-        );
+        return photos.filter(photo => photo && photo !== "null" && !photo.startsWith("@") && typeof photo === "string");
     } catch (error) {
         console.error("Error parsing photos:", error);
         return [];
     }
 }
-// Функция форматирования телефона
-function formatPhone(phone) {
-    if (!phone || phone === "null") return "";
-    
-    const cleaned = phone.replace(/\D/g, "");
-    
-    if (cleaned.length === 9) {
-        return "+375 " + cleaned.substring(0, 2) + " " + cleaned.substring(2, 5) + " " + cleaned.substring(5, 7) + " " + cleaned.substring(7);
-    } else if (cleaned.length === 12) {
-        return "+" + cleaned.substring(0, 3) + " " + cleaned.substring(3, 5) + " " + cleaned.substring(5, 8) + " " + cleaned.substring(8, 10) + " " + cleaned.substring(10);
-    }
-    
-    return phone;
-}
 
-// Основная функция парсинга свойств
+// ОСНОВНАЯ ФУНКЦИЯ ПАРСИНГА
 function parseProperties(parsedData) {
     console.log("🔄 Starting to parse properties from XML data...");
 
@@ -279,7 +249,9 @@ function parseProperties(parsedData) {
             try {
                 const rawPrice = cleanPrice(record.price);
                 const photos = parsePhotos(record.photos);
-                const contactPhone = formatPhone(record.contact_phone_1);
+                
+                // ИЗВЛЕКАЕМ ДАННЫЕ ОДНОЙ ФУНКЦИЕЙ
+                const { phone: contactPhone, name: contactName } = extractRecordData(record);
 
                 const property = {
                     unid: record["$"]?.unid || "unknown_" + index,
@@ -290,7 +262,6 @@ function parseProperties(parsedData) {
                     details: createDetails(record),
                     priceBYN: formatPriceBYN(rawPrice),
                     priceUSD: formatPriceUSD(rawPrice),
-                    pricePerM2: formatPricePerM2(record.price_m2),
                     type: record.terms?.includes("д") ? "Дом" : 
                           record.terms?.includes("к") ? "Коммерческая" : "Квартира",
                     code: record.code || "",
@@ -300,7 +271,6 @@ function parseProperties(parsedData) {
                     area_living: record.area_living || "",
                     area_kitchen: record.area_kitchen || "",
                     price: rawPrice,
-                    price_m2: record.price_m2 ? (typeof record.price_m2 === "object" ? record.price_m2["_"] : record.price_m2) : "",
                     town_name: record.town_name || "",
                     street_name: record.street_name || "",
                     house_number: record.house_number || "",
@@ -312,12 +282,12 @@ function parseProperties(parsedData) {
                     state_region_name: record.state_region_name || "",
                     town_district_name: record.town_district_name || "",
                     contact_phone_1: contactPhone,
-                    contact_name: record.contact_name || "",
+                    contact_name: contactName,
                     terms: record.terms || "",
                     house_type: record.house_type || ""
                 };
 
-                console.log(`Property ${index}: ${photos.length} photos, phone: ${contactPhone ? "yes" : "no"}`);
+                console.log(`Property ${index}: ${photos.length} photos, agent: ${contactName}, phone: ${contactPhone}`);
                 return property;
 
             } catch (recordError) {
@@ -335,10 +305,9 @@ function parseProperties(parsedData) {
     }
 }
 
-// Функция синхронизации
+// ФУНКЦИЯ СИНХРОНИЗАЦИИ
 async function syncProperties(parsedProperties) {
     const currentUnids = parsedProperties.map(p => p.unid);
-
     for (const property of parsedProperties) {
         try {
             await db.insertProperty(property);
@@ -346,7 +315,6 @@ async function syncProperties(parsedProperties) {
             console.error("Error inserting property:", err);
         }
     }
-
     try {
         const archivedCount = await db.archiveMissingProperties(currentUnids);
         console.log(`Archived ${archivedCount} properties`);
@@ -355,149 +323,108 @@ async function syncProperties(parsedProperties) {
     }
 }
 
-// Основная функция синхронизации
+// ОСНОВНАЯ ФУНКЦИЯ СИНХРОНИЗАЦИИ
 async function fetchAndSyncProperties() {
     console.log("🚀 Starting data sync...");
-
     try {
         const xmlText = await fetchXML();
         console.log("Received XML data, length:", xmlText.length, "characters");
-
         const parser = new XMLParser();
         const parsedData = await parser.parse(xmlText);
         console.log("XML parsed successfully");
-
         const properties = parseProperties(parsedData);
-
         if (properties.length === 0) {
             console.log("⚠️ No properties to sync");
             return;
         }
-
         console.log(`💾 Saving ${properties.length} properties to database...`);
         await syncProperties(properties);
         console.log("✅ Sync completed successfully!");
-
     } catch (error) {
         console.error("❌ Sync failed:", error);
     }
 }
 
-// Функция получения свойств для API
+// ФУНКЦИЯ ДЛЯ API
 function getProperties(filters = {}, limit = 12, offset = 0) {
     return new Promise((resolve, reject) => {
         const dbConn = new sqlite3.Database("./properties.db");
-
         let whereConditions = ["archive != 1"];
         let params = [];
-
         if (filters.type) {
             whereConditions.push("type LIKE ?");
             params.push("%" + filters.type + "%");
         }
-
         if (filters.price_max) {
             whereConditions.push("CAST(price AS REAL) <= ?");
             params.push(filters.price_max);
         }
-
         if (filters.area_min) {
             whereConditions.push("CAST(area_total AS FLOAT) >= ?");
             params.push(filters.area_min);
         }
-
         if (filters.area_max) {
             whereConditions.push("CAST(area_total AS FLOAT) <= ?");
             params.push(filters.area_max);
         }
-
         if (filters.rooms) {
             whereConditions.push("rooms = ?");
             params.push(filters.rooms);
         }
-
         const whereClause = whereConditions.length > 0 ? "WHERE " + whereConditions.join(" AND ") : "";
         params.push(limit, offset);
-
         const query = `
             SELECT * FROM properties
             ${whereClause}
             ORDER BY created_at DESC
             LIMIT ? OFFSET ?
         `;
-
         const countQuery = `
             SELECT COUNT(*) as total FROM properties
             ${whereClause}
         `;
-
         const countParams = params.slice(0, -2);
-
         dbConn.get(countQuery, countParams, (countErr, countRow) => {
             if (countErr) console.error("Count query error:", countErr);
-
             const totalCount = countRow ? countRow.total : 0;
-
             dbConn.all(query, params, (err, rows) => {
                 if (err) {
                     console.error("Database error:", err);
                     reject(err);
                 } else {
-                    const properties = rows.map(row => {
-                        return {
-                            id: row.id,
-                            unid: row.unid,
-                            title: row.title,
-                            address: row.address,
-                            district: row.district,
-                            area: row.area,
-                            details: row.details,
-                            priceBYN: row.priceBYN,
-                            priceUSD: row.priceUSD,
-                            pricePerM2: row.pricePerM2,
-                            type: row.type,
-                            photos: parsePhotos(row.photos),
-                            contact_phone: row.contact_phone_1,
-                            contact_name: row.contact_name,
-                            agency_name: row.agency_name,
-                            rooms: row.rooms,
-                            area_total: row.area_total,
-                            building_year: row.building_year,
-                            description: row.description
-                        };
-                    });
-
+                    const properties = rows.map(row => ({
+                        id: row.id,
+                        unid: row.unid,
+                        title: row.title,
+                        address: row.address,
+                        district: row.district,
+                        area: row.area,
+                        details: row.details,
+                        priceBYN: row.priceBYN,
+                        priceUSD: row.priceUSD,
+                        type: row.type,
+                        photos: parsePhotos(row.photos),
+                        contact_phone: row.contact_phone_1,
+                        contact_name: row.contact_name,
+                        agency_name: row.agency_name,
+                        rooms: row.rooms,
+                        area_total: row.area_total,
+                        building_year: row.building_year,
+                        description: row.description
+                    }));
                     resolve({
                         properties: properties,
                         totalCount: totalCount,
                         hasMore: (offset + limit) < totalCount
                     });
                 }
-
                 dbConn.close();
             });
         });
     });
 }
 
-// Mock data fallback
-function getMockData() {
-    return [
-        {
-            title: "Квартира в центре Минска",
-            location: "Минск, Центр",
-            price: 120000,
-            type: "Квартира",
-            description: "Уютная квартира с современным ремонтом.",
-            features: ["3 комнаты", "Балкон", "Ремонт"],
-            photos: ["/images/placeholder-loading.svg"]
-        }
-    ];
-}
-
 module.exports = { 
-    fetchProperties: getProperties, 
     fetchAndSyncProperties, 
-    getMockData, 
     getProperties 
 };
