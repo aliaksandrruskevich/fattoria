@@ -107,6 +107,11 @@ app.get('/staff', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "staff.html"));
 });
 
+app.get('/api/employees', (req, res) => {
+    const { getEmployees } = require('./api/employees');
+    getEmployees(req, res);
+});
+
 app.get('/tariff-grid', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "tariff-grid.html"));
 });

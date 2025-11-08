@@ -74,6 +74,73 @@ class BitrixAPI {
             return null;
         }
     }
+
+    async getEmployees() {
+        try {
+            const response = await axios.get(`${this.webhookUrl}/user.get`, {
+                params: {
+                    filter: { ACTIVE: 'Y' },
+                    select: ['ID', 'NAME', 'LAST_NAME', 'PERSONAL_PHOTO', 'WORK_PHONE', 'PERSONAL_MOBILE', 'UF_DEPARTMENT']
+                }
+            });
+            return response.data.result || [];
+        } catch (error) {
+            console.error('Error fetching employees:', error.message);
+            return [];
+        }
+    }
 }
 
-module.exports = BitrixAPI;
+async function handleFormSubmission(type, formData) {
+    const webhookUrl = 'https://b24-7f121e.bitrix24.by/rest/1/p1a3njih5vb5x0oj/';
+
+    try {
+        let leadData = {
+            TITLE: `Заявка с сайта: ${formData.source || 'Обратная связь'}`,
+            NAME: formData.name || '',
+            PHONE: formData.phone ? [{ VALUE: formData.phone, VALUE_TYPE: 'WORK' }] : [],
+            EMAIL: formData.email ? [{ VALUE: formData.email, VALUE_TYPE: 'WORK' }] : [],
+            COMMENTS: formData.message || formData.request || '',
+            SOURCE_ID: 'WEB',
+            ASSIGNED_BY_ID: 1,
+            STATUS_ID: 'NEW'
+        };
+
+        // Add additional fields if available
+        if (formData.propertyUnid) {
+            leadData.UF_CRM_PROPERTY_UNID = formData.propertyUnid;
+        }
+        if (formData.propertyTitle) {
+            leadData.TITLE += ` - ${formData.propertyTitle}`;
+        }
+        if (formData.budget) {
+            leadData.OPPORTUNITY = parseFloat(formData.budget);
+            leadData.CURRENCY_ID = 'USD';
+        }
+
+        const response = await axios.post(`${webhookUrl}crm.lead.add.json`, {
+            fields: leadData
+        });
+
+        if (response.data && response.data.result) {
+            return {
+                success: true,
+                leadId: response.data.result,
+                message: 'Lead created successfully'
+            };
+        } else {
+            return {
+                success: false,
+                error: response.data.error_description || 'Unknown error'
+            };
+        }
+    } catch (error) {
+        console.error('Error submitting form to Bitrix:', error.message);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+module.exports = { BitrixAPI, handleFormSubmission };

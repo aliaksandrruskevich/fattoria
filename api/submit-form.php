@@ -35,7 +35,7 @@ if (empty($data['name']) || empty($data['contact'])) {
 }
 
 // Bitrix24 configuration
-$bitrixWebhookUrl = 'https://b24-7f121e.bitrix24.by/rest/1/i9js4wq3krz8ek24/';
+$bitrixWebhookUrl = 'https://b24-7f121e.bitrix24.by/rest/1/p1a3njih5vb5x0oj/';
 
 // Prepare lead data for Bitrix24
 $leadData = [
