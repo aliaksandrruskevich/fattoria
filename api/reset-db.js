@@ -1,0 +1,1 @@
+const sqlite3=require('sqlite3').verbose();const db=new sqlite3.Database('../properties.db');db.run('DELETE FROM properties',function(e){if(e)console.error(e);else console.log('Deleted '+this.changes);db.close();});

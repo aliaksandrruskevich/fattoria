@@ -8,6 +8,25 @@ const { fetchAndSyncProperties } = require("./api/properties");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Функция для исправления двойной кодировки
+// Функция для исправления двойной кодировки
+function decodeDoubleEncoding(text) {
+    if (!text || typeof text !== 'string') return text;
+    
+    try {
+        // Если текст содержит escape-последовательности Unicode, декодируем их
+        if (text.includes('\\u')) {
+            return text.replace(/\\u[\dA-F]{4}/gi, 
+                match => String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16)));
+        }
+        
+        return text;
+    } catch (error) {
+        console.error('Error decoding text:', error);
+        return text;
+    }
+} 
+
 // Безопасность - Helmet для автоматических заголовков
 app.use(helmet({
   contentSecurityPolicy: {
@@ -206,14 +225,25 @@ app.get("/api/properties", async (req, res) => {
 
         const result = await getProperties(filters, limit, offset);
 
+        let properties = [];
         if (Array.isArray(result)) {
-            res.json(result);
+            properties = result;
         } else if (result && Array.isArray(result.properties)) {
-            res.json(result.properties);
+            properties = result.properties;
         } else {
             console.error("getProperties returned invalid result:", result);
-            res.status(500).json({ error: "Invalid data from database" });
+            return res.status(500).json({ error: "Invalid data from database" });
         }
+
+        // 🔥 ИСПРАВЛЕНИЕ КОДИРОВКИ
+        const fixedProperties = properties.map(property => ({
+            ...property,
+            contact_name: decodeDoubleEncoding(property.contact_name),
+            extra_info: decodeDoubleEncoding(property.extra_info),
+            description: decodeDoubleEncoding(property.description)
+        }));
+
+        res.json(fixedProperties);
     } catch (error) {
         console.error("Ошибка получения свойств:", error);
         res.status(500).json({ error: "Internal server error" });
@@ -226,7 +256,14 @@ app.get("/api/property/:unid", async (req, res) => {
         const property = await getPropertyByUnid(req.params.unid);
 
         if (property) {
-            res.json(property);
+            // 🔥 ИСПРАВЛЕНИЕ КОДИРОВКИ
+            const fixedProperty = {
+                ...property,
+                contact_name: decodeDoubleEncoding(property.contact_name),
+                extra_info: decodeDoubleEncoding(property.extra_info),
+                description: decodeDoubleEncoding(property.description)
+            };
+            res.json(fixedProperty);
         } else {
             res.status(404).json({ error: "Property not found" });
         }
