@@ -116,18 +116,6 @@ app.get('/tariff-grid', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "tariff-grid.html"));
 });
 
-app.get('/commercial-properties', (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "commercial-properties.html"));
-});
-
-app.get('/country-properties', (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "country-properties.html"));
-});
-
-app.get('/blog', (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "blog.html"));
-});
-
 app.get('/article', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "article.html"));
 });
@@ -179,6 +167,21 @@ app.get('/jk/park-chelyuskincev', (req, res) => {
 
 app.get('/jk/farforovy', (req, res) => {
     res.sendFile(path.join(__dirname, "новостройки", "жк-фарфоровый.html"));
+});
+app.get('/jk/levada', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-левада.html"));
+});
+
+app.get('/jk/minsk-mir', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-минск-мир.html"));
+});
+
+app.get('/jk/novaya-borovaya', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-новая-боровая.html"));
+});
+
+app.get('/jk/park-chelyuskincev', (req, res) => {
+    res.sendFile(path.join(__dirname, "новостройки", "жк-парк-челюскинцев.html"));
 });
 // Если нет папки public, обслуживаем из корня
 app.use(express.static("."));

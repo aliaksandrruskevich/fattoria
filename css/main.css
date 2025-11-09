@@ -27,7 +27,7 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    color: #000000;
+    color: #f5f3f3;
     background: var(--bg-color);
     padding-top: 76px; /* Для фиксированной навигации */
     transition: background-color 0.3s ease, color 0.3s ease;

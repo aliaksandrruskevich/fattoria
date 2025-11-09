@@ -864,7 +864,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Dark Mode Toggle Script
 document.addEventListener('DOMContentLoaded', function() {
-  const darkModeToggle = document.getElementById('darkModeToggle');
+  const darkModeToggle = document.getElementById("darkModeToggle"); if (!darkModeToggle) return;
   const body = document.body;
   const icon = darkModeToggle.querySelector('i');
 
@@ -999,7 +999,7 @@ function formatPrice(price, currency = 'USD') {
 
 // Welcome Modal Script
 document.addEventListener('DOMContentLoaded', function() {
-  const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {
+  const welcomeModalEl = document.getElementById("welcomeModal"); if (!welcomeModalEl) return; const welcomeModal = new bootstrap.Modal(welcomeModalEl, {
     backdrop: 'static',
     keyboard: false
   });

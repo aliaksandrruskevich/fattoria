@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (headerPlaceholder) {
         headerPlaceholder.innerHTML = html;
         // Инициализируем обработчики форм после загрузки хедера
-        initializeFormHandlers();
+        // initializeFormHandlers();
 
       }
     })
