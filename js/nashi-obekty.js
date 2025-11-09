@@ -1,8 +1,9 @@
 ﻿// Пагинация для страницы "Наши объекты" - РАБОЧАЯ ВЕРСИЯ
 console.log('✅ nashi-obekty.js loaded - PAGINATION FIXED');
 
-let currentPage = 1;
-let totalPages = 1;
+// Глобальные переменные для пагинации
+window.currentPage = 1;
+window.totalPages = 1;
 const itemsPerPage = 6;
 
 // Добавляем CSS исправления
@@ -72,7 +73,7 @@ function showPropertyDetails(property) {
 async function loadProperties(page = 1) {
     try {
         console.log(`🔄 Загружаем страницу ${page}...`);
-        currentPage = page;
+        window.currentPage = page;
         
         const container = document.getElementById('propertiesContainer');
         if (container) {
@@ -86,9 +87,10 @@ async function loadProperties(page = 1) {
         // Загружаем количество
         const countResponse = await fetch('/api/properties/count');
         const countData = await countResponse.json();
-        totalPages = Math.ceil(countData.count / itemsPerPage);
-        
-        console.log(`✅ СТРАНИЦА ${page}: ${properties.length} объектов, всего: ${totalPages} страниц`);
+        window.totalPages = Math.ceil(countData.count / itemsPerPage);
+        document.getElementById('totalPages').textContent = window.totalPages;
+
+        console.log(`✅ СТРАНИЦА ${page}: ${properties.length} объектов, всего: ${window.totalPages} страниц`);
         
         // Отображаем
         displayProperties(properties);
@@ -149,7 +151,7 @@ function displayProperties(properties) {
         // Делаем кнопку кликабельной
         const button = card.querySelector('button');
         button.onclick = function(e) {
-            e.stopPropagation(); // Останавливаем всплытие чтобы не сработал клик на карточке
+            e.stopPropagation();
             showPropertyDetails(property);
         };
         
@@ -164,15 +166,15 @@ function updatePagination() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    if (currentPageEl) currentPageEl.textContent = currentPage;
-    if (totalPagesEl) totalPagesEl.textContent = totalPages;
+    if (currentPageEl) currentPageEl.textContent = window.currentPage;
+    if (totalPagesEl) totalPagesEl.textContent = window.totalPages;
     if (prevBtn) {
-        prevBtn.disabled = currentPage === 1;
-        prevBtn.onclick = () => currentPage > 1 && loadProperties(currentPage - 1);
+        prevBtn.disabled = window.currentPage === 1;
+        prevBtn.onclick = () => window.currentPage > 1 && loadProperties(window.currentPage - 1);
     }
     if (nextBtn) {
-        nextBtn.disabled = currentPage === totalPages;
-        nextBtn.onclick = () => currentPage < totalPages && loadProperties(currentPage + 1);
+        nextBtn.disabled = window.currentPage === window.totalPages;
+        nextBtn.onclick = () => window.currentPage < window.totalPages && loadProperties(window.currentPage + 1);
     }
 }
 
