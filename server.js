@@ -204,9 +204,15 @@ app.get("/", (req, res) => {
 // API маршрут для свойств
 app.get("/api/properties", async (req, res) => {
     try {
-        // Пагинация
-        const limit = parseInt(req.query.limit) || 12;
-        const offset = parseInt(req.query.offset) || 0;
+        // Пагинация - исправлено для поддержки page/limit параметров
+        let limit = parseInt(req.query.limit) || 12;
+        let offset = parseInt(req.query.offset) || 0;
+
+        // Поддержка page параметра для пагинации
+        if (req.query.page) {
+            const page = parseInt(req.query.page) || 1;
+            offset = (page - 1) * limit;
+        }
 
         // Фильтры
         const filters = {};
@@ -226,7 +232,7 @@ app.get("/api/properties", async (req, res) => {
             filters.rooms = req.query.rooms;
         }
 
-        console.log("API call: /api/properties with limit:", limit, "offset:", offset, "filters:", filters);
+        console.log("API call: /api/properties with limit:", limit, "offset:", offset, "page:", req.query.page, "filters:", filters);
 
         const result = await getProperties(filters, limit, offset);
 

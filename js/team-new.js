@@ -203,14 +203,10 @@ function openMemberModal(member) {
 }
 
 // Асинхронная функция для инициализации данных сотрудников
+// Асинхронная функция для инициализации данных сотрудников
 async function initializeTeamData() {
-    try {
-        teamData = await loadTeamDataFromBitrix();
-        console.log("Team data loaded from Bitrix:", teamData.length, "employees");
-    } catch (error) {
-        console.error("Failed to load team data from Bitrix, using static data");
-        teamData = getStaticTeamData();
-    }
+    console.log("Using static team data");
+    teamData = getStaticTeamData();
     loadTeamData();
 }
 
